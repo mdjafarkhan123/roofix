@@ -1,0 +1,18 @@
+---
+const { title, type } = Astro.props;
+---
+
+<a
+    href="#start-case"
+    class=`btn btn--${type} magnetic-button`
+    role="button"
+    aria-label={title}
+>
+    <span class="btn__text text">{title}</span>
+    <span class="btn__icon" aria-hidden="true">
+        <svg class="icon" width="24" height="24">
+            <use xlink:href="/sprite.svg#arrow-right-up"></use>
+        </svg>
+    </span>
+    <span class="btn__bg"></span>
+</a>

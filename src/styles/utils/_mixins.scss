@@ -1,0 +1,17 @@
+@mixin respond-to($device) {
+    $breakpoints: (
+        "mobile-lg": 480px,
+        "mobile-xl": 640px,
+        "tablet": 768px,
+        "laptop": 992px,
+        "desktop": 1200px,
+    );
+
+    @if map-has-key($breakpoints, $device) {
+        @media (min-width: map-get($breakpoints, $device)) {
+            @content;
+        }
+    } @else {
+        @warn "Unknown device '#{$device}'. Available options: #{map-keys($breakpoints)}";
+    }
+}

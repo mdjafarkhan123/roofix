@@ -1,0 +1,1400 @@
+---
+import { Image } from "astro:assets";
+import Button from "../components/Button.astro";
+import Layout from "../layout/Layout.astro";
+import herobgMobile from "../assets/images/mobileHeroBg.avif";
+import herobg from "../assets/images/hero-bg.avif";
+import underTheFold from "../styles/pages/home/home.scss?url";
+import googleImg from "../assets/images/googel.avif";
+import fbImg from "../assets/images/facebook.avif";
+import trustpilotImg from "../assets/images/trustpilot.avif";
+import badgeOne from "../assets/images/authentic.avif";
+import badgeTwo from "../assets/images/bbb.avif";
+import badgeThree from "../assets/images/google-review.avif";
+import badgeFour from "../assets/images/most-trusted.avif";
+import videoBtnImg from "../assets/images/video-btn-bg.avif";
+import aboutMobileImg from "../assets/images/team-mobile.avif";
+import aboutTabletImg from "../assets/images/team-tablet.avif";
+import aboutDesktopImg from "../assets/images/team-desktop.avif";
+import service1img from "../assets/images/serviceone.avif";
+import service2img from "../assets/images/servicetwo.avif";
+import service3img from "../assets/images/servicethree.avif";
+import service4img from "../assets/images/servicefour.avif";
+import process1img from "../assets/images/process1.avif";
+import process2img from "../assets/images/process2.avif";
+import process3img from "../assets/images/process3.avif";
+import process4img from "../assets/images/process4.avif";
+import project1img from "../assets/images/projectMobile1.avif";
+import project2img from "../assets/images/projectMobile2.avif";
+import project3img from "../assets/images/projectMobile3.avif";
+import project4img from "../assets/images/projectMobile4.avif";
+import project5img from "../assets/images/projectMobile5.avif";
+import project6img from "../assets/images/projectMobile6.avif";
+import projectDesk1img from "../assets/images/projectDesktop1.avif";
+import projectDesk2img from "../assets/images/projectDesktop2.avif";
+import projectDesk3img from "../assets/images/projectDesktop3.avif";
+import projectDesk4img from "../assets/images/projectDesktop4.avif";
+import projectDesk5img from "../assets/images/projectDesktop5.avif";
+import projectDesk6img from "../assets/images/projectDesktop6.avif";
+import projectDesk7img from "../assets/images/projectDesktop7.avif";
+import whyUsImg from "../assets/images/whyChooseUsMobile.avif";
+import whyUsDesktopImg from "../assets/images/whyChooseUsDesktop.avif";
+import team1 from "../assets/images/teamMember1.avif";
+import team2 from "../assets/images/teamMember2.avif";
+import team3 from "../assets/images/teamMember3.avif";
+import team4 from "../assets/images/teamMember4.avif";
+import user1 from "../assets/images/user1.avif";
+import user2 from "../assets/images/user2.avif";
+import user3 from "../assets/images/user3.avif";
+import user4 from "../assets/images/user4.avif";
+import blogImg1 from "../assets/images/blogThumbnail1.avif";
+import blogImg2 from "../assets/images/blogThumbnail2.avif";
+import blogImg3 from "../assets/images/blogThumbnail3.avif";
+import blogImg4 from "../assets/images/blogThumbnail4.avif";
+import blogImg5 from "../assets/images/blogThumbnail5.avif";
+import blogImg6 from "../assets/images/blogThumbnail6.avif";
+import awardIcon from "../assets/images/experience.svg";
+import guaranteeIcon from "../assets/images/guarantee.svg";
+import pricingIcon from "../assets/images/honesty.svg";
+import localIcon from "../assets/images/local.svg";
+
+const stats = [
+    { value: "20+", title: "Years of experience" },
+    { value: "99%", title: "Client satisfaction" },
+    { value: "3K+", title: "Projects completed" },
+    { value: "24/7", title: "Emergency service" },
+];
+
+const services = [
+    {
+        thumbnail: service1img,
+        title: "Roof installation",
+        description:
+            "Reliable installation of modern, long-lasting roofing systems designed for strength, efficiency, and curb appeal.",
+    },
+    {
+        thumbnail: service2img,
+        title: "Roof repair",
+        description:
+            "Fast and dependable repair services for leaks, cracked shingles, and storm damage to keep your home protected.",
+    },
+    {
+        thumbnail: service3img,
+        title: "Roof replacement",
+        description:
+            "Complete roof replacement with durable materials, improving safety, energy efficiency, and property value.",
+    },
+    {
+        thumbnail: service4img,
+        title: "Roof inspection & maintenance",
+        description:
+            "Thorough roof checkups and preventative maintenance to spot issues early and extend the life of your roof.",
+    },
+];
+
+const process = [
+    {
+        thumbnail: process1img,
+        title: "Free consultation",
+        description: "Through inspection and no obligation estimate",
+    },
+    {
+        thumbnail: process2img,
+        title: "Detailed plan",
+        description: "Comprehensive plans with materials timeline and specs",
+    },
+    {
+        thumbnail: process3img,
+        title: "Expert installation",
+        description: "Precision execution with safety and quality standards ",
+    },
+    {
+        thumbnail: process4img,
+        title: "Final inspection",
+        description: "Through inspection and  complete cleanup",
+    },
+];
+
+const projects = [
+    {
+        thumbnail: {
+            mobile: project1img,
+            desktop: projectDesk1img,
+        },
+        title: "Residential roof installation",
+        description:
+            "Expert installation of high-quality roofs built to last, using trusted materials and skilled craftsmanship.",
+    },
+    {
+        thumbnail: {
+            mobile: project2img,
+            desktop: projectDesk2img,
+        },
+        title: "Storm damage & roof restoration",
+        description:
+            "Fast and reliable restoration work that repairs storm-related damage and brings your roof back to full strength.",
+    },
+    {
+        thumbnail: {
+            mobile: project3img,
+            desktop: projectDesk3img,
+        },
+        title: "Complete roof replacement",
+        description:
+            "High-performance roof replacement using durable materials designed to improve safety, efficiency, and longevity.",
+    },
+    {
+        thumbnail: {
+            mobile: project4img,
+            desktop: projectDesk4img,
+        },
+        title: "Commercial flat roof upgrade",
+        description:
+            "Professional upgrading of flat roofing systems with modern, weather-resistant materials for long-term protection.",
+    },
+    {
+        thumbnail: {
+            mobile: project5img,
+            desktop: projectDesk5img,
+        },
+        title: "Gutter & drainage improvement",
+        description:
+            "Precision installation and cleanup of gutters to enhance water flow and prevent structural or roof damage",
+    },
+];
+
+const whyChooseUs = [
+    {
+        icon: awardIcon,
+        title: "Certified experts",
+        description:
+            "We hold top-tier certifications (GAF Master Elite) ensuring superior quality and manufacturer-backed warranties.",
+    },
+    {
+        icon: guaranteeIcon,
+        title: "Lifetime guarentee",
+        description:
+            "Confidence in our craftsmanship. We offer comprehensive, long-term warranties on both materials and workmanship.",
+    },
+    {
+        icon: pricingIcon,
+        title: "Transparent pricing",
+        description:
+            "Detailed, up-front estimates with no hidden fees. Get the best value without compromising material quality",
+    },
+    {
+        icon: localIcon,
+        title: "Local & reliable",
+        description:
+            "We are a locally owned and operated business, committed to serving our community with integrity and reliable service.",
+    },
+];
+
+const team = [
+    {
+        image: team1,
+        name: "Jafar Khan",
+        role: "President & founder",
+    },
+    {
+        image: team2,
+        name: "Rayhan kabir",
+        role: "lead project manager",
+    },
+    {
+        image: team3,
+        name: "Asif molla",
+        role: "Senior estimator",
+    },
+    {
+        image: team4,
+        name: "Robin",
+        role: "Customer relation specialist",
+    },
+];
+
+const testimonial = [
+    {
+        platform: googleImg,
+        name: "Mark R",
+        image: user1,
+        role: "Home owner",
+        quote: "Roofix made the entire roofing process incredibly simple. Their team explained every step, worked efficiently, and delivered a roof that looks great and feels built to last. I couldn’t be happier with the result",
+    },
+    {
+        platform: fbImg,
+        image: user2,
+        name: "Sarah",
+        role: "Property manager",
+        quote: "Managing several properties means I need reliable partners, and Roofix has become one of my favorites. They showed up on time, handled everything with care, and communicated clearly from start to finish",
+    },
+    {
+        platform: googleImg,
+        name: "Rayhan K",
+        image: user3,
+        role: "Small business owner",
+        quote: "Our commercial roof upgrade was long overdue, but Roofix handled it like pros. They used quality materials and worked around our business hours to avoid disruptions. Truly a dependable team",
+    },
+    {
+        platform: googleImg,
+        name: "Hibib R",
+        image: user4,
+        role: "Real estate investor",
+        quote: "I rely on consistent quality across my properties, and Roofix delivered exactly that. They were transparent, fast, and the final roof installation added real value to my investment",
+    },
+    {
+        platform: trustpilotImg,
+        name: "Rakib A",
+        image: user1,
+        role: "Renovation contractor",
+        quote: "I’ve collaborated with many roofing companies, and Roofix stands out. Their craftsmanship is top-tier, pricing is fair, and they treat every project like it’s their own home.",
+    },
+];
+
+const blogs = [
+    {
+        title: "How to choose the right roofing material for your house",
+        image: blogImg1,
+        category: "Instruction",
+        date: "March 18,2025",
+    },
+    {
+        title: "Top 5 roofing problems in Dhaka and how to solve them",
+        image: blogImg2,
+        category: "Tips & Tricks",
+        date: "March 18,2025",
+    },
+    {
+        title: "Roof maintenance tips every homeowner should know",
+        image: blogImg3,
+        category: "Tips & Tricks",
+        date: "March 18,2025",
+    },
+];
+
+const serviceLocations = [
+    "Savar",
+    "DEPZ",
+    "Gulsan",
+    "Uttara",
+    "Banani",
+    "Dhanmondi 32",
+    "Elephant rode",
+    "Mirpur DOHS",
+    "Technical",
+    "Hemayetpur",
+    "Ashulia",
+    "Demra",
+];
+---
+
+<Layout>
+    <section id="hero" class="hero">
+        <picture class="hero__bg">
+            <source media="(min-width: 768px)" srcset={herobg.src} />
+            <img
+                src={herobgMobile.src}
+                alt="Repairing roof"
+                loading="eager"
+                fetchpriority="high"
+            />
+        </picture>
+        <div class="hero__wrapper container">
+            <div class="hero__info">
+                <h1 class="hero__title">Reliable roofing solutions</h1>
+                <div class="hero__image-box image-box">
+                    <div class="avatar-group">
+                        <figure class="img-avatar">
+                            <img
+                                class="img-avatar__image"
+                                src={googleImg.src}
+                                alt="User 1 avatar"
+                                data-initial="U"
+                                onerror="this.style.display='none'"
+                                loading="eager"
+                                fetchpriority="high"
+                            />
+                        </figure>
+                        <figure class="img-avatar">
+                            <img
+                                class="img-avatar__image"
+                                src={fbImg.src}
+                                alt="User 2 avatar"
+                                data-initial="U"
+                                onerror="this.style.display='none'"
+                                loading="eager"
+                                fetchpriority="high"
+                            />
+                        </figure>
+                        <figure class="img-avatar">
+                            <img
+                                class="img-avatar__image"
+                                src={trustpilotImg.src}
+                                alt="User 3 avatar"
+                                data-initial="U"
+                                onerror="this.style.display='none'"
+                                loading="eager"
+                                fetchpriority="high"
+                            />
+                        </figure>
+                    </div>
+                    <div class="image-box__content">
+                        <div class="rating">
+                            <div class="rating__icon">
+                                {
+                                    Array.from({ length: 5 }).map((_, i) => (
+                                        <svg
+                                            class="icon"
+                                            width="40"
+                                            height="40"
+                                        >
+                                            <use xlink:href="/sprite.svg#star-fill" />
+                                        </svg>
+                                    ))
+                                }
+                            </div>
+                            5.0
+                        </div>
+                        <div class="description">2K+ User review</div>
+                    </div>
+                </div>
+                <Button type="secondary" title="contact us" />
+            </div>
+            <div class="hero__form">
+                <div class="hero__form-wrapper">
+                    <p class="hero__form-title">
+                        Get your free roofing quote today !
+                    </p>
+                    <form action="" class="quote-form" method="post">
+                        <div class="quote-form__row">
+                            <div class="quote-form__group">
+                                <label for="full_name" class="quote-form__name"
+                                    >Full name</label
+                                >
+                                <input
+                                    type="text"
+                                    name="full_name"
+                                    id="full_name"
+                                    placeholder="Full name"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                        </div>
+                        <div class="quote-form__row">
+                            <div class="quote-form__group">
+                                <label for="email" class="quote-form__email"
+                                    >Email address</label
+                                >
+                                <input
+                                    type="email"
+                                    name="email_address"
+                                    id="email"
+                                    placeholder="Email address"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                            <div class="quote-form__group">
+                                <label for="phone" class="quote-form__phone"
+                                    >Phone number</label
+                                >
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    id="phone"
+                                    placeholder="Phone number"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                        </div>
+                        <div class="quote-form__row">
+                            <div class="quote-form__group">
+                                <label for="service" class="quote-form__service"
+                                    >Type of service</label
+                                >
+
+                                <select
+                                    name="type_of_service"
+                                    id="service"
+                                    required
+                                    aria-required="true"
+                                >
+                                    <option selected disabled
+                                        >Type of service</option
+                                    >
+                                    <option value="new_fence_installation"
+                                        >New fence installation</option
+                                    >
+                                    <option
+                                        value="fence_repair_and_installation"
+                                        >Fence repair & installation</option
+                                    >
+                                    <option value="custom_gate_installation"
+                                        >Custom gate installation</option
+                                    >
+                                    <option value="fence_maintenance"
+                                        >Fence maintenance</option
+                                    >
+                                    <option value="commercial_fencing"
+                                        >Commercial fencing</option
+                                    >
+                                </select>
+                            </div>
+                            <div class="quote-form__group">
+                                <label
+                                    for="zip_code"
+                                    class="quote-form__zip-code">Zip code</label
+                                >
+                                <input
+                                    type="number"
+                                    name="zip_code"
+                                    id="zip_code"
+                                    placeholder="Zip code"
+                                    required
+                                    aria-required="true"
+                                />
+                            </div>
+                        </div>
+                        <div class="quote-form__row">
+                            <div class="quote-form__group">
+                                <label for="address" class="quote-form__address"
+                                    >Address</label
+                                >
+                                <input
+                                    type="text"
+                                    name="address"
+                                    id="address"
+                                    placeholder="Address"
+                                    required
+                                    aria-required="true"
+                                    maxlength="60"
+                                />
+                            </div>
+                        </div>
+                        <div class="quote-form__row">
+                            <div class="quote-form__group">
+                                <label for="message" class="quote-form__message"
+                                    >Email address</label
+                                >
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    placeholder="Enter your message"
+                                    class="quote-form__textarea"></textarea>
+                            </div>
+                        </div>
+                        <button
+                            type="submit"
+                            class="btn btn--primary"
+                            aria-label="Get A Quote">Get our free quote</button
+                        >
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="partner" class="partner">
+        <div class="partner__wrapper container">
+            <div class="partner__list">
+                <Image
+                    class="partner__item"
+                    src={badgeOne}
+                    height="56"
+                    alt="Trusted badge"
+                />
+                <Image
+                    class="partner__item"
+                    src={badgeTwo}
+                    height="56"
+                    alt="Trusted badge"
+                />
+                <Image
+                    class="partner__item"
+                    src={badgeThree}
+                    height="56"
+                    alt="Trusted badge"
+                />
+                <Image
+                    class="partner__item"
+                    src={badgeFour}
+                    height="56"
+                    alt="Trusted badge"
+                />
+            </div>
+        </div>
+    </section>
+    <section id="about" class="about">
+        <div class="about__wrapper container">
+            <div class="about__info">
+                <div class="about__info-intro">
+                    <div class="badge">about us</div>
+                    <h2 class="about__heading">
+                        Your <span class="colored-text">trusted</span> roofing company
+                        in dhaka
+                    </h2>
+                    <button
+                        class="about__video-btn lazy-bg"
+                        data-bg={videoBtnImg.src}
+                    >
+                        <span class="text">Watch</span>
+                        <span class="icon"
+                            ><svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                ><path
+                                    d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017Z"
+                                ></path></svg
+                            ></span
+                        >
+                    </button>
+                </div>
+                <div class="about__info-detail">
+                    <div class="badge__list">
+                        <Image
+                            class="badge__item"
+                            src={badgeOne}
+                            height="56"
+                            alt="Trusted badge"
+                        />
+                        <Image
+                            class="badge__item"
+                            src={badgeTwo}
+                            height="56"
+                            alt="Trusted badge"
+                        />
+                        <Image
+                            class="badge__item"
+                            src={badgeThree}
+                            height="56"
+                            alt="Trusted badge"
+                        />
+                        <Image
+                            class="badge__item"
+                            src={badgeFour}
+                            height="56"
+                            alt="Trusted badge"
+                        />
+                    </div>
+                    <p class="about__description">
+                        RoofFix has built a strong reputation in Dhaka for
+                        providing roofing services, handling everything from
+                        minor fixes to complex residential projects with care
+                        and expertise
+                    </p>
+                    <div class="about__btn-group">
+                        <button
+                            class="about__video-btn lazy-bg"
+                            data-bg={videoBtnImg.src}
+                        >
+                            <span class="text">Watch</span>
+                            <span class="icon"
+                                ><svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    ><path
+                                        d="M12.8659 3.00017L22.3922 19.5002C22.6684 19.9785 22.5045 20.5901 22.0262 20.8662C21.8742 20.954 21.7017 21.0002 21.5262 21.0002H2.47363C1.92135 21.0002 1.47363 20.5525 1.47363 20.0002C1.47363 19.8246 1.51984 19.6522 1.60761 19.5002L11.1339 3.00017C11.41 2.52187 12.0216 2.358 12.4999 2.63414C12.6519 2.72191 12.7782 2.84815 12.8659 3.00017Z"
+                                    ></path></svg
+                                ></span
+                            >
+                        </button>
+                        <Button type="primary" title="more about us" />
+                        <a href="#" class="callback-btn"
+                            ><span class="text">Request a callback</span>
+                            <span class="icon"
+                                ><svg
+                                    width="41"
+                                    height="15"
+                                    viewBox="0 0 41 15"
+                                    fill="currentColor"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        d="M40.7071 8.07088C41.0976 7.68035 41.0976 7.04719 40.7071 6.65666L34.3431 0.292702C33.9526 -0.0978227 33.3195 -0.0978227 32.9289 0.292702C32.5384 0.683226 32.5384 1.31639 32.9289 1.70692L38.5858 7.36377L32.9289 13.0206C32.5384 13.4111 32.5384 14.0443 32.9289 14.4348C33.3195 14.8254 33.9526 14.8254 34.3431 14.4348L40.7071 8.07088ZM0 7.36377V8.36377H40V7.36377V6.36377H0V7.36377Z"
+                                        fill="currentColor"></path>
+                                </svg></span
+                            ></a
+                        >
+                    </div>
+                </div>
+            </div>
+            <div class="about__stats">
+                {
+                    stats.map((item) => (
+                        <div class="stats__item">
+                            <div class="stats__item-number">{item.value}</div>
+                            <div class="stats__item-label">{item.title}</div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="about__media">
+                <picture>
+                    <source
+                        media="(min-width: 992px)"
+                        srcset={aboutDesktopImg.src}
+                    />
+                    <source
+                        media="(min-width: 680px)"
+                        srcset={aboutTabletImg.src}
+                    />
+                    <img src={aboutMobileImg.src} alt="Team of Roofix" />
+                </picture>
+            </div>
+        </div>
+    </section>
+    <section id="service" class="service">
+        <div class="service__wrapper container">
+            <div class="service__intro">
+                <div class="badge">services</div>
+                <h2 class="services__heading">
+                    Your <span class="colored-text">roofing</span> needs fully covered
+                </h2>
+            </div>
+            <div class="service__list">
+                <div class="service__tile-list">
+                    {
+                        services.map((service) => {
+                            return (
+                                <article class="service-item">
+                                    <div class="service-item__image-wrapper">
+                                        <Image
+                                            class="service__item-image"
+                                            src={service.thumbnail}
+                                            alt={service.title}
+                                        />
+                                    </div>
+                                    <div class="service-item__content">
+                                        <div class="service-item__header">
+                                            <h3 class="service-item__title">
+                                                {service.title}
+                                            </h3>
+                                            <span class="service-item__icon">
+                                                <svg
+                                                    class="icon"
+                                                    width="24"
+                                                    height="24"
+                                                >
+                                                    <use xlink:href="/sprite.svg#arrow-right-up" />
+                                                </svg>
+                                            </span>
+                                        </div>
+                                        <p class="service-item__description">
+                                            {service.description}
+                                        </p>
+                                        <span class="service-item__icon">
+                                            <svg
+                                                class="icon"
+                                                width="24"
+                                                height="24"
+                                            >
+                                                <use xlink:href="/sprite.svg#arrow-right-up" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </article>
+                            );
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="process" class="process">
+        <div class="process__wrapper container">
+            <div class="process__intro">
+                <div class="process__intro-header">
+                    <div class="badge">how we work</div>
+                    <h2 class="process__heading">
+                        Our <span class="colored-text">proven</span> roofing process
+                    </h2>
+                </div>
+                <div class="process__intro-description">
+                    <p class="process__description">
+                        Our 4-step process keeps roofing simple, with quality
+                        work and clear communication at every step, from start
+                        to finish
+                    </p>
+                    <Button type="primary" title="get a free quote" />
+                </div>
+            </div>
+            <div class="process__list">
+                {
+                    process.map((item, index) => (
+                        <div class="process__item">
+                            <div class="process__item-media">
+                                <Image
+                                    class="process__item-image"
+                                    alt={item.title}
+                                    src={item.thumbnail}
+                                />
+                            </div>
+                            <div class="process__item-content">
+                                <h3 class="process__item-title">
+                                    {item.title}
+                                </h3>
+                                <p class="process__item-description">
+                                    {item.description}
+                                </p>
+                                <span class="process__item-index">
+                                    {`0${index + 1}`}
+                                </span>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="projects">
+        <div class="projects__wrapper container">
+            <div class="projects__intro">
+                <div class="badge">projects</div>
+                <h2 class="projects__heading">
+                    Our featured <span class="colored-text">projects</span>
+                </h2>
+                <p class="projects__description">
+                    Our projects showcase the quality, craftsmanship, and
+                    reliable roofing solutions we deliver across Dhaka.
+                </p>
+            </div>
+            <div class="projects__list">
+                {
+                    projects.map((item) => (
+                        <article class="projects__item">
+                            <div class="projects__media">
+                                <picture>
+                                    <source
+                                        media="(max-width: 767px)"
+                                        srcset={item.thumbnail.mobile.src}
+                                    />
+                                    <source
+                                        media="(min-width: 768px)"
+                                        srcset={item.thumbnail.desktop.src}
+                                    />
+                                    <img
+                                        src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                                        alt={item.title}
+                                        loading="lazy"
+                                    />
+                                </picture>
+                            </div>
+                            <div class="projects__content">
+                                <h3 class="projects__title">{item.title}</h3>
+                                <div class="divider" aria-hidden="true" />
+                                <p class="projects__title">
+                                    {item.description}
+                                </p>
+                                <Button type="secondary" title="view details" />
+                            </div>
+                        </article>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+    <section id="reason" class="reason">
+        <div class="reason__wrapper container">
+            <div class="reason__intro">
+                <div class="reason__intro-heading">
+                    <div class="badge">why choose us</div>
+                    <h2 class="reason__heading">
+                        Why we're the <span class="colored-text"
+                            >right choice</span
+                        >
+                    </h2>
+                </div>
+                <div class="reason__intro-description">
+                    <p class="reason__description">
+                        We deliver dependable roofing solutions backed by years
+                        of experience, honest service, and consistently strong
+                        results that homeowners can trust
+                    </p>
+                    <Button type="primary" title="Get a free quote"
+                        >get a free quote</Button
+                    >
+                </div>
+            </div>
+            <div class="reason__content">
+                <div class="reason__list">
+                    {
+                        whyChooseUs.map((item, i) => (
+                            <>
+                                <div class="reason__item">
+                                    <div class="reason__item-icon">
+                                        <item.icon class="icon" />
+                                    </div>
+                                    <div class="reason__item-content">
+                                        <h3 class="reason__item-title">
+                                            {item.title}
+                                        </h3>
+                                        <p class="reason__item-description">
+                                            {item.description}
+                                        </p>
+                                    </div>
+                                </div>
+                                {i < whyChooseUs.length - 1 && (
+                                    <div class="divider" />
+                                )}
+                            </>
+                        ))
+                    }
+                </div>
+                <div class="reason__cta">
+                    <Button type="primary" title="get a free quote" />
+                </div>
+                <div class="reason__media">
+                    <picture>
+                        <source
+                            media="(max-width: 767px)"
+                            srcset={whyUsImg.src}
+                        />
+                        <source
+                            media="(min-width: 768px)"
+                            srcset={whyUsDesktopImg.src}
+                        />
+                        <img
+                            src="data:image/gif;base64,R0lGODlhAQABAAAAACw="
+                            alt="Picture of team is working"
+                            loading="lazy"
+                        />
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="team" class="team">
+        <div class="team__wrapper container">
+            <div class="team__intro">
+                <div class="badge">our team</div>
+                <h2 class="team__heading">
+                    Meet our <span class="colored-text">experts</span>
+                </h2>
+                <p class="team__description">
+                    A dedicated team of skilled roofing professionals committed
+                    to delivering quality, reliability, and care on every
+                    project.
+                </p>
+            </div>
+            <div class="team__list">
+                {
+                    team.map((item, i) => (
+                        <div class="team__item">
+                            <div class="team__media">
+                                <Image
+                                    class="team__image"
+                                    alt={item.name}
+                                    src={item.image}
+                                />
+                            </div>
+                            <div class="team__content">
+                                <h3 class="team__name">{item.name}</h3>
+                                <div class="team__role">{item.role}</div>
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="team__cta">
+                <Button type="secondary" title="view everyone" />
+            </div>
+        </div>
+    </section>
+    <section id="testimonial" class="testimonial">
+        <div class="testimonial__wrapper container">
+            <div class="testimonial__header">
+                <div class="testimonial__header-intro">
+                    <div class="badge">testimonials</div>
+                    <h2 class="testimonial__heading">
+                        What <span class="colored-text">clients</span> are saying
+                    </h2>
+                </div>
+                <div class="testimonial__header-content">
+                    <p class="testimonial__header-description">
+                        Hear directly from the people we've served. From small
+                        repairs to complete roof installations, our clients
+                        share how our team's expertise and dedication made their
+                        roofing experience smooth and worry-free
+                    </p>
+                    <div
+                        class="slider-controls"
+                        role="group"
+                        aria-label="Slider navigation"
+                    >
+                        <button
+                            type="button"
+                            class="slider-controls__btn slider-controls__btn--prev btn btn--primary"
+                            aria-label="Previous service"
+                        >
+                            <span class="btn__icon" aria-hidden="true">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M22.0003 13.0001L22.0004 11.0002L5.82845 11.0002L9.77817 7.05044L8.36396 5.63623L2 12.0002L8.36396 18.3642L9.77817 16.9499L5.8284 13.0002L22.0003 13.0001Z"
+                                    ></path>
+                                </svg>
+                            </span>
+                            <span class="btn__bg" aria-hidden="true"></span>
+                        </button>
+
+                        <button
+                            type="button"
+                            class="slider-controls__btn slider-controls__btn--next btn btn--primary"
+                            aria-label="Next service"
+                        >
+                            <span class="btn__icon" aria-hidden="true">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="24"
+                                    height="24"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M1.99974 13.0001L1.9996 11.0002L18.1715 11.0002L14.2218 7.05044L15.636 5.63623L22 12.0002L15.636 18.3642L14.2218 16.9499L18.1716 13.0002L1.99974 13.0001Z"
+                                    ></path>
+                                </svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial__content">
+                <div class="testimonial__list">
+                    {
+                        testimonial.map((item, i) => (
+                            <article
+                                class="testimonial-item swiper-slide"
+                                role="group"
+                                aria-roledescription="slide"
+                                aria-label={`Testimonial by ${item.name}`}
+                            >
+                                <div class="testimonial-item__platform">
+                                    <div class="testimonial-item__platform-logo">
+                                        <Image
+                                            class="testimonial-item__platform-logo"
+                                            src={item.platform}
+                                            alt={"Platform Logo"}
+                                        />
+                                    </div>
+                                    <div class="testimonial-item__platform-rating">
+                                        {Array.from({ length: 5 }).map(
+                                            (_, i) => (
+                                                <svg
+                                                    class="icon"
+                                                    width="20"
+                                                    height="20"
+                                                >
+                                                    <use xlink:href="/sprite.svg#star-fill" />
+                                                </svg>
+                                            )
+                                        )}
+                                    </div>
+                                </div>
+                                <div class="testimonial-item__content">
+                                    <blockquote class="testimonial-item__feedback">
+                                        <p>{item.quote}</p>
+                                    </blockquote>
+                                </div>
+
+                                <div class="testimonial-item__author">
+                                    <div class="testimonial-item__author-media">
+                                        <Image
+                                            class="testimonial-item__author-image"
+                                            src={item.image}
+                                            alt={item.name}
+                                        />
+                                    </div>
+                                    <div class="testimonial-item__author-info">
+                                        <div class="author-name">
+                                            {item.name}
+                                        </div>
+                                        <p class="author-role">{item.role}</p>
+                                    </div>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+                <div
+                    class="slider-controls"
+                    role="group"
+                    aria-label="Slider navigation"
+                >
+                    <button
+                        type="button"
+                        class="slider-controls__btn slider-controls__btn--prev btn btn--primary"
+                        aria-label="Previous service"
+                    >
+                        <span class="btn__icon" aria-hidden="true">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M22.0003 13.0001L22.0004 11.0002L5.82845 11.0002L9.77817 7.05044L8.36396 5.63623L2 12.0002L8.36396 18.3642L9.77817 16.9499L5.8284 13.0002L22.0003 13.0001Z"
+                                ></path>
+                            </svg>
+                        </span>
+                        <span class="btn__bg" aria-hidden="true"></span>
+                    </button>
+
+                    <button
+                        type="button"
+                        class="slider-controls__btn slider-controls__btn--next btn btn--primary"
+                        aria-label="Next service"
+                    >
+                        <span class="btn__icon" aria-hidden="true">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                            >
+                                <path
+                                    d="M1.99974 13.0001L1.9996 11.0002L18.1715 11.0002L14.2218 7.05044L15.636 5.63623L22 12.0002L15.636 18.3642L14.2218 16.9499L18.1716 13.0002L1.99974 13.0001Z"
+                                ></path>
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="blogs" class="blogs">
+        <div class="blogs__wrapper container">
+            <div class="blogs__intro">
+                <div class="badge">articles</div>
+                <h2 class="blogs__heading">
+                    Discover <span class="colored-text">roofing guides</span> and
+                    trends
+                </h2>
+            </div>
+            <div class="blogs__list">
+                {
+                    blogs.map((item, i) => (
+                        <div class="blogs__item">
+                            <div class="blogs__media">
+                                <Image src={item.image} alt={item.title} />
+                            </div>
+                            <div class="blogs__data">
+                                <div class="blogs__category">
+                                    {item.category}
+                                </div>
+                                <div class="divider" />
+                                <div class="blogs__date">{item.date}</div>
+                            </div>
+                            <h3 class="blogs__title">{item.title}</h3>
+                        </div>
+                    ))
+                }
+            </div>
+            <div class="blogs__cta">
+                <Button type="primary" title="view all posts" />
+            </div>
+        </div>
+    </section>
+    <section id="locations" class="locations">
+        <div class="locations__wrapper container">
+            <div class="locations__intro">
+                <div class="locations__intro-header">
+                    <div class="badge">locations</div>
+                    <h2 class="locations__heading">
+                        Our services <span class="colored-text">locations</span>
+                    </h2>
+                </div>
+                <div class="locations__intro-description">
+                    <p class="locations__description">
+                        We proudly offer professional fencing services across
+                        multiple locations, bringing quality and craftsmanship
+                        to every community we serve
+                    </p>
+                    <Button type="primary" title="get a free quote" />
+                </div>
+            </div>
+            <div class="locations__list">
+                <div class="locations__list-wrapper">
+                    {
+                        serviceLocations
+                            .slice(0, serviceLocations.length / 2)
+                            .map((item, i) => (
+                                <>
+                                    <div class="locations__item">
+                                        <div class="locations__icon">
+                                            <svg
+                                                class="icon"
+                                                width="24"
+                                                height="24"
+                                            >
+                                                <use xlink:href="/sprite.svg#location-fill" />
+                                            </svg>
+                                        </div>
+                                        <div class="locations__name">
+                                            {item}
+                                        </div>
+                                        <div class="locations__cta">
+                                            <svg
+                                                class="icon"
+                                                width="24"
+                                                height="24"
+                                            >
+                                                <use xlink:href="/sprite.svg#arrow-right-up" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    {i < serviceLocations.length && (
+                                        <div class="divider" />
+                                    )}
+                                </>
+                            ))
+                    }
+                </div>
+                <div class="locations__list-wrapper">
+                    {
+                        serviceLocations
+                            .slice(serviceLocations.length / 2)
+                            .map((item, i) => (
+                                <>
+                                    <div class="locations__item">
+                                        <div class="locations__icon">
+                                            <svg
+                                                class="icon"
+                                                width="24"
+                                                height="24"
+                                            >
+                                                <use xlink:href="/sprite.svg#location-fill" />
+                                            </svg>
+                                        </div>
+                                        <div class="locations__name">
+                                            {item}
+                                        </div>
+                                        <div class="locations__cta">
+                                            <svg
+                                                class="icon"
+                                                width="24"
+                                                height="24"
+                                            >
+                                                <use xlink:href="/sprite.svg#arrow-right-up" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    {i < serviceLocations.length / 2 - 1 && (
+                                        <div class="divider" />
+                                    )}
+                                </>
+                            ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+    <Fragment slot="bottom-style">
+        <link rel="stylesheet" href={underTheFold} />
+    </Fragment>
+</Layout>
+<style lang="scss">
+    .hero {
+        position: relative;
+        padding-block: calc(var(--space-fluid-2xl) * 2);
+        margin-block: var(--space-2xsm);
+        border-radius: var(--round-xl);
+        &__bg {
+            position: absolute;
+            inset: 0;
+            border-radius: var(--round-xl);
+            background-color: var(--color-background);
+            overflow: hidden;
+            &::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background: linear-gradient(
+                    180deg,
+                    rgb(0 0 0 / 0%) 6%,
+                    rgb(0 0 0 / 62%) 30%,
+                    rgb(0 0 0 / 51%) 100%
+                );
+                z-index: 1;
+            }
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+                z-index: inherit;
+            }
+        }
+        &__wrapper {
+            position: relative;
+            gap: var(--space-2xl);
+            z-index: 2;
+        }
+        &__info {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-md);
+            .btn {
+                margin-top: 1rem;
+            }
+        }
+        &__title {
+            text-align: center;
+            color: var(--color-heading-white);
+        }
+
+        .image-box {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: var(--space-sm);
+            &__content {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                .rating {
+                    display: flex;
+                    font-size: var(--fs-lg);
+                    line-height: 0;
+                    font-weight: 700;
+                    color: var(--color-heading-white);
+                    align-items: center;
+                    gap: var(--space-2xsm);
+                    &__icon svg {
+                        width: 1.8rem;
+                        color: #ecc219;
+                        height: auto;
+                    }
+                }
+
+                .description {
+                    text-transform: capitalize;
+                    color: var(--color-text-white);
+                }
+            }
+        }
+        .avatar-group {
+            --group-spacing: 0; /* Converted -11px to rem (assuming 1rem = 16px) */
+            display: flex;
+            flex-direction: row-reverse; /* Right-to-left stacking */
+            isolation: isolate;
+            .img-avatar {
+                --size: 5.125rem; /* 50px converted to rem */
+                position: relative;
+                width: var(--size);
+                height: var(--size);
+                border: none;
+                border-radius: 50%;
+                overflow: hidden;
+                background-color: #a2a2a2;
+                color: #fff;
+                font-size: calc(var(--size) * 0.4);
+                font-weight: bold;
+                text-transform: uppercase;
+                user-select: none;
+                box-sizing: border-box; /* Simplifies sizing */
+                margin: 0;
+                z-index: 0; /* Base z-index for stacking */
+                &:not(:nth-last-of-type(1)) {
+                    margin-left: var(--group-spacing);
+                }
+            }
+            /* Stacking effect */
+            .img-avatar:not(:first-child) {
+                z-index: 1; /* Overlap subsequent avatars */
+            }
+
+            /* Image styling */
+            .img-avatar__image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            /* Fallback for failed images */
+            .img-avatar:has(
+                    .img-avatar__image[style*="display: none"]
+                )::before {
+                content: attr(data-initial);
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        &__form {
+            position: relative;
+            &-wrapper {
+                position: absolute;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                max-width: 440px;
+                background-color: var(--color-white);
+                padding: var(--space-md) var(--space-sm);
+                border-radius: var(--round-lg);
+                box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.103);
+                z-index: inherit;
+            }
+            &-title {
+                max-width: 320px;
+                font-size: var(--fs-xl);
+                text-align: center;
+                font-weight: 700;
+                line-height: 1.1;
+                text-transform: capitalize;
+                color: var(--color-primary);
+                margin-bottom: var(--space-xsm);
+            }
+            .quote-form {
+                display: grid;
+                width: 100%;
+                gap: var(--space-xsm);
+                &__group {
+                    width: 100%;
+                }
+                &__row {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+                    gap: var(--space-xsm);
+                }
+                label {
+                    position: absolute;
+                    width: 1px;
+                    height: 1px;
+                    padding: 0;
+                    margin: -1px;
+                    overflow: hidden;
+                    clip: rect(0, 0, 0, 0);
+                    white-space: nowrap;
+                }
+                button {
+                    width: 100%;
+                    background-color: var(--color-secondary);
+                    padding: var(--space-md);
+                    border: none;
+                    outline: none;
+                }
+            }
+        }
+    }
+</style>

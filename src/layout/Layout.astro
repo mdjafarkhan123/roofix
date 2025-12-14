@@ -1,0 +1,176 @@
+---
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import utfFooterCss from "../styles/pages/footer/footer.scss?url";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta
+            name="description"
+            content="We are Oracer, we care about your oral health"
+        />
+        <meta name="author" content="Jafar Khan" />
+        <meta name="keywords" content="Dental, Dentist, Dentistry, doctors" />
+
+        <!-- Favicon -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+        <title>Trusted roofing service</title>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+        <slot name="bottom-style" />
+        <link rel="stylesheet" href={utfFooterCss} />
+    </body>
+</html>
+<script src="../code/code.js"></script>
+
+<style is:global lang="scss">
+    @use "../styles/globals";
+    @use "../styles/utils" as *;
+    /*======== Header design =======*/
+    .header {
+        $line-thickness: 2px;
+        position: relative;
+        z-index: 900;
+
+        &__container {
+            width: calc(100% - 1.6rem);
+            min-height: 60px;
+            justify-content: center;
+            background-color: var(--color-background);
+            margin-block-start: 0.8rem;
+            margin-inline: auto;
+            border-radius: 100px;
+            padding-right: var(--space-2xsm);
+        }
+
+        &__nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        &__logo {
+            display: inline-flex;
+            flex-grow: 1;
+        }
+        &__menu {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            font-size: var(--fs-md);
+            font-weight: 500;
+            inset: 0;
+            background-color: var(--color-white);
+            transform: translateX(100%);
+            transition: 0.5s ease transform;
+            a {
+                color: var(--color-heading-dark);
+            }
+            z-index: inherit;
+        }
+        &__menu-toggler {
+            position: relative;
+            width: 30px;
+            height: 20px;
+            margin-right: -10px;
+            z-index: 1;
+
+            .line {
+                position: absolute;
+                width: 100%;
+                height: $line-thickness;
+                left: 0;
+                background-color: var(--color-primary);
+                &:nth-of-type(1) {
+                    top: 0;
+                    transition:
+                        transform 300ms 0ms cubic-bezier(0.23, 1, 0.32, 1),
+                        top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                        background-color 0ms 300ms
+                            cubic-bezier(0.23, 1, 0.32, 1);
+                }
+                &:nth-of-type(2) {
+                    top: 50%;
+                    transform: translateY(-50%);
+                    background-color: var(--color-primary);
+                    transition: background-color 300ms 300ms
+                        cubic-bezier(0.23, 1, 0.32, 1);
+                }
+                &:nth-of-type(3) {
+                    bottom: 0;
+                    transition:
+                        transform 300ms 0ms cubic-bezier(0.23, 1, 0.32, 1),
+                        bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1),
+                        background-color 0ms 300ms
+                            cubic-bezier(0.23, 1, 0.32, 1);
+                }
+            }
+
+            &[aria-expanded="true"] {
+                .line {
+                    background-color: var(--color-dark);
+                    &:nth-of-type(1) {
+                        top: calc(50% - #{$line-thickness / 2});
+                        transform: rotate(45deg);
+                        transition:
+                            top 300ms 0ms cubic-bezier(0.23, 1, 0.32, 1),
+                            transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+                    }
+                    &:nth-of-type(2) {
+                        opacity: 0;
+                    }
+                    &:nth-of-type(3) {
+                        bottom: calc(50% - #{$line-thickness / 2});
+                        transform: rotate(-45deg);
+                        transition:
+                            bottom 300ms 0ms cubic-bezier(0.23, 1, 0.32, 1),
+                            transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+                    }
+                }
+            }
+        }
+        &__cta {
+            font-weight: 500;
+            color: var(--color-white);
+            background-color: var(--color-accent);
+            padding: 16px 20px;
+            border-radius: 50px;
+            text-transform: capitalize;
+            line-height: 1;
+        }
+    }
+
+    /*========= Responisve design ========*/
+    @include respond-to("laptop") {
+        .header {
+            &__menu {
+                position: relative;
+                flex-direction: row;
+                font-size: 1rem;
+                letter-spacing: 1px;
+                font-weight: 500;
+                text-transform: capitalize;
+                background-color: transparent;
+                width: fit-content;
+                transform: translateX(0);
+                gap: 25px;
+            }
+            &__menu-toggler {
+                display: none;
+            }
+        }
+    }
+</style>

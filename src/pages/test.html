@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+<div class="reason__list">
+  {whyChooseUs.map((item, i) => (
+    <>
+      <div class="reason__item">
+        <div class="reason__item-icon">
+          <item.icon class="icon" />
+        </div>
+        <div class="reason__item-content">
+          <h3 class="reason__item-tit">{item.title}</h3>
+          <p class="reason__item-description">{item.description}</p>
+        </div>
+      </div>
+
+      {/* Conditional divider: not rendered on last item */}
+      {i < whyChooseUs.length - 1 && <div class="divider"></div>}
+    </>
+  ))}
+</div>
+
+
+    </body>
+</html>

@@ -1,0 +1,97 @@
+@font-face {
+    font-display: swap;
+    font-family: "Heading";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/src/assets/fonts/Prata-Regular.woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Body";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/src/assets/fonts/instrument-sans-v4-latin-regular.woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Body";
+    font-style: normal;
+    font-weight: 500;
+    src: url("/src/assets/fonts/instrument-sans-v4-latin-500.woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Body";
+    font-style: normal;
+    font-weight: 600;
+    src: url("/src/assets/fonts/instrument-sans-v4-latin-600.woff2");
+}
+@font-face {
+    font-display: swap;
+    font-family: "Body";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/src/assets/fonts/instrument-sans-v4-latin-700.woff2");
+}
+
+:root {
+    --color-primary: #292f42;
+    --color-secondary: #ff6525;
+    --color-accent: #ff6525;
+    --color-heading-white: #ffffff;
+    --color-heading-dark: #292f42;
+    --color-text-white: #f1f1f1;
+    --color-text-dark: #666666;
+    --color-background: #e7eef5;
+    --color-white: #ffffff;
+    --color-dark: #000000;
+    --color-offwhite: #f2f2f2;
+
+    /* Interactive States */
+    --color-hover: #004494;
+
+    /* Feedback Colors */
+    --color-success: #28a745;
+    --color-error: #dc3545;
+    --color-warning: #ffc107;
+
+    /* Border and Dividers */
+    --color-border: #d1d5db;
+
+    /*========== Font size =====*/
+    --fs-xsm: 1.4rem;
+    --fs-sm: 1.5rem;
+    --fs-base: 1.6rem;
+    --fs-md: 1.8rem;
+    --fs-lg: 2rem;
+    --fs-xl: 2.4rem;
+    --fs-fluid-sm: clamp(2.4rem, 2.139rem + 0.58vw, 2.8rem);
+    --fs-fluid-md: clamp(2.4rem, 1.878rem + 1.159vw, 3.2rem);
+    --fs-fluid-lg: clamp(3.6rem, 2.296rem + 2.899vw, 5.6rem);
+    --fs-fluid-xl: clamp(4.8rem, 2.452rem + 5.217vw, 8.4rem);
+
+    /*======= Spacing ===========*/
+    --space-3xsm: 4px;
+    --space-2xsm: 8px;
+    --space-xsm: 12px;
+    --space-sm: 16px;
+    --space-md: 20px;
+    --space-lg: 24px;
+    --space-xl: 32px;
+    --space-2xl: 36px;
+    --space-3xl: 40px;
+    --space-fluid-xsm: clamp(1.2rem, 0.8rem + 1vw, 2rem);
+    --space-fluid-sm: clamp(1.6rem, 0.9rem + 1.75vw, 3rem);
+    --space-fluid-md: clamp(2.4rem, 1.6rem + 2vw, 4rem);
+    --space-fluid-lg: clamp(3.2rem, 2.4rem + 2vw, 4.8rem);
+    --space-fluid-xl: clamp(3.5rem, 1.75rem + 4.375vw, 7rem);
+    --space-fluid-2xl: clamp(7rem, 3.9rem + 7.75vw, 13.2rem);
+
+    /*========== Misc =======*/
+    --round-sm: 8px;
+    --round-md: 12px;
+    --round-lg: 20px;
+    --round-xl: 30px;
+    --round-2xl: 40px;
+    --transition: 0.3s ease;
+}
