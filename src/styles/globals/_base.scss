@@ -360,6 +360,7 @@ hr {
     gap: 10px;
     overflow: hidden;
     white-space: nowrap;
+    flex-shrink: 0;
     &__text {
         position: inherit;
         z-index: 2;

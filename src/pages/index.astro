@@ -302,63 +302,67 @@ const serviceLocations = [
         <div class="hero__wrapper container">
             <div class="hero__info">
                 <h1 class="hero__title">Reliable roofing solutions</h1>
-                <div class="hero__image-box image-box">
-                    <div class="avatar-group">
-                        <figure class="img-avatar">
-                            <img
-                                class="img-avatar__image"
-                                src={googleImg.src}
-                                alt="User 1 avatar"
-                                data-initial="U"
-                                onerror="this.style.display='none'"
-                                loading="eager"
-                                fetchpriority="high"
-                            />
-                        </figure>
-                        <figure class="img-avatar">
-                            <img
-                                class="img-avatar__image"
-                                src={fbImg.src}
-                                alt="User 2 avatar"
-                                data-initial="U"
-                                onerror="this.style.display='none'"
-                                loading="eager"
-                                fetchpriority="high"
-                            />
-                        </figure>
-                        <figure class="img-avatar">
-                            <img
-                                class="img-avatar__image"
-                                src={trustpilotImg.src}
-                                alt="User 3 avatar"
-                                data-initial="U"
-                                onerror="this.style.display='none'"
-                                loading="eager"
-                                fetchpriority="high"
-                            />
-                        </figure>
-                    </div>
-                    <div class="image-box__content">
-                        <div class="rating">
-                            <div class="rating__icon">
-                                {
-                                    Array.from({ length: 5 }).map((_, i) => (
-                                        <svg
-                                            class="icon"
-                                            width="40"
-                                            height="40"
-                                        >
-                                            <use xlink:href="/sprite.svg#star-fill" />
-                                        </svg>
-                                    ))
-                                }
-                            </div>
-                            5.0
+                <div class="hero__info-group">
+                    <div class="hero__image-box image-box">
+                        <div class="avatar-group">
+                            <figure class="img-avatar">
+                                <img
+                                    class="img-avatar__image"
+                                    src={googleImg.src}
+                                    alt="User 1 avatar"
+                                    data-initial="U"
+                                    onerror="this.style.display='none'"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                />
+                            </figure>
+                            <figure class="img-avatar">
+                                <img
+                                    class="img-avatar__image"
+                                    src={fbImg.src}
+                                    alt="User 2 avatar"
+                                    data-initial="U"
+                                    onerror="this.style.display='none'"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                />
+                            </figure>
+                            <figure class="img-avatar">
+                                <img
+                                    class="img-avatar__image"
+                                    src={trustpilotImg.src}
+                                    alt="User 3 avatar"
+                                    data-initial="U"
+                                    onerror="this.style.display='none'"
+                                    loading="eager"
+                                    fetchpriority="high"
+                                />
+                            </figure>
                         </div>
-                        <div class="description">2K+ User review</div>
+                        <div class="image-box__content">
+                            <div class="rating">
+                                <div class="rating__icon">
+                                    {
+                                        Array.from({ length: 5 }).map(
+                                            (_, i) => (
+                                                <svg
+                                                    class="icon"
+                                                    width="40"
+                                                    height="40"
+                                                >
+                                                    <use xlink:href="/sprite.svg#star-fill" />
+                                                </svg>
+                                            )
+                                        )
+                                    }
+                                </div>
+                                5.0
+                            </div>
+                            <div class="description">2K+ User review</div>
+                        </div>
                     </div>
+                    <Button type="secondary" title="contact us" />
                 </div>
-                <Button type="secondary" title="contact us" />
             </div>
             <div class="hero__form">
                 <div class="hero__form-wrapper">
@@ -1205,6 +1209,7 @@ const serviceLocations = [
     </Fragment>
 </Layout>
 <style lang="scss">
+    @use "../styles/utils" as *;
     .hero {
         position: relative;
         padding-block: calc(var(--space-fluid-2xl) * 2);
@@ -1249,6 +1254,11 @@ const serviceLocations = [
             gap: var(--space-md);
             .btn {
                 margin-top: 1rem;
+            }
+            &-group {
+                display: flex;
+                flex-direction: column;
+                gap: var(--space-lg);
             }
         }
         &__title {
@@ -1393,6 +1403,46 @@ const serviceLocations = [
                     padding: var(--space-md);
                     border: none;
                     outline: none;
+                }
+            }
+        }
+    }
+
+    @include respond-to("laptop") {
+        .hero {
+            padding-block: var(--space-fluid-2xl);
+            &__bg {
+                height: 100%;
+                object-fit: cover;
+                object-position: top center;
+            }
+            &__wrapper {
+                max-width: 1600px;
+                flex-direction: row;
+                align-items: flex-end;
+            }
+            &__form {
+                flex-shrink: 0;
+                &-wrapper {
+                    min-width: 424px;
+                    position: relative;
+                }
+            }
+            &__info {
+                text-align: left;
+                align-items: flex-start;
+                .hero__title {
+                    text-align: left;
+                }
+                &-group {
+                    flex-direction: row-reverse;
+                }
+            }
+            & &__image-box {
+                justify-content: flex-start;
+                flex-flow: row;
+                .avatar-group {
+                    --group-spacing: calc(-1 * var(--space-xsm));
                 }
             }
         }

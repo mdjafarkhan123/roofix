@@ -61,6 +61,7 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
         }
         &__logo {
             display: inline-flex;
+            color: var(--color-primary);
             flex-grow: 1;
         }
         &__menu {
@@ -86,6 +87,7 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
             width: 30px;
             height: 20px;
             margin-right: -10px;
+            padding: 0;
             z-index: 1;
 
             .line {
@@ -150,26 +152,57 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
             border-radius: 50px;
             text-transform: capitalize;
             line-height: 1;
+            &--desktop {
+                display: none;
+            }
         }
     }
 
     /*========= Responisve design ========*/
     @include respond-to("laptop") {
         .header {
+            &__container {
+                max-width: 1920px;
+                background-color: transparent;
+            }
+            &__nav {
+                justify-content: space-between;
+            }
+            &__logo {
+                flex-grow: unset;
+            }
             &__menu {
                 position: relative;
-                flex-direction: row;
-                font-size: 1rem;
-                letter-spacing: 1px;
-                font-weight: 500;
-                text-transform: capitalize;
-                background-color: transparent;
                 width: fit-content;
+                flex-direction: row;
+                font-size: var(--fs-base);
+                font-weight: 600;
+                text-transform: capitalize;
+                background-color: var(--color-background);
+                padding: 16px 44px !important;
+                border-radius: 100px;
                 transform: translateX(0);
                 gap: 25px;
+                &-item {
+                    a {
+                        color: var(--color-text-dark);
+                    }
+                    line-height: 1;
+                    padding: 0.6rem 1.4rem;
+                    background-color: var(--color-white);
+                    border-radius: 50px;
+                }
             }
             &__menu-toggler {
                 display: none;
+            }
+            &__cta {
+                &--mobile {
+                    display: none;
+                }
+                &--desktop {
+                    display: inline-flex;
+                }
             }
         }
     }

@@ -1,3 +1,7 @@
+---
+import Button from "./Button.astro";
+---
+
 <header id="header" class="header">
     <div class="header__container container">
         <nav class="header__nav" aria-label="Main navigation">
@@ -41,21 +45,29 @@
             </a>
             <ul class="header__menu" id="main-navigation">
                 <li class="header__menu-item">
-                    <a href="#about" class="header__menu-link">About</a>
+                    <a href="#about" class="header__menu-link">About us</a>
                 </li>
                 <li class="header__menu-item">
                     <a href="#service" class="header__menu-link">Service</a>
                 </li>
                 <li class="header__menu-item">
-                    <a href="#testimonial" class="header__menu-link"
-                        >Testimonial</a
+                    <a href="#testimonial" class="header__menu-link">Team</a>
+                </li>
+                <li class="header__menu-item">
+                    <a href="#testimonial" class="header__menu-link">Projects</a
                     >
                 </li>
                 <li class="header__menu-item">
                     <a href="#contact" class="header__menu-link">Contact</a>
                 </li>
             </ul>
-            <a href="#" class="header__cta"> Get a quote </a>
+            <a href="#" class="header__cta header__cta--mobile">
+                Get a quote
+            </a>
+            <Button
+                type="primary header__cta--desktop"
+                title="Get a free quote"
+            />
         </nav>
     </div>
 </header>
