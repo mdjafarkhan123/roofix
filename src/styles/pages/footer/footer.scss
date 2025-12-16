@@ -1,3 +1,4 @@
+@use "../../utils" as *;
 .footer {
     background-color: var(--color-primary);
     padding-top: var(--space-fluid-2xl);
@@ -9,7 +10,7 @@
         align-items: center;
         gap: 5px;
         &-item {
-            background-color: var(--color-primary);
+            background-color: var(--color-accent);
             border-radius: 50px;
             list-style: none;
             transition: var(--transition);
@@ -19,18 +20,18 @@
         }
         &-link {
             display: inline-flex;
-            color: var(--color-primary);
+            color: var(--color-white);
             text-decoration: none;
             line-height: 0;
             padding: 8px;
             svg {
-                fill: var(--color-banner);
                 width: 20px;
             }
         }
     }
     &__wrapper {
         gap: var(--space-fluid-lg);
+        overflow: hidden;
     }
     &-cta {
         display: flex;
@@ -71,7 +72,7 @@
         gap: var(--space-fluid-lg);
         &__introduction {
             display: flex;
-            max-width: max(392px, 40%);
+            max-width: min(392px, 100%);
             width: 100%;
             color: var(--color-text-white);
             flex-flow: column;
@@ -79,12 +80,12 @@
         }
 
         &__nav {
-            max-width: 130px;
-            width: 100%;
+            width: fit-content;
             color: var(--color-text-white);
             &-title {
                 color: var(--color-heading-white);
                 margin-bottom: var(--space-xsm);
+                white-space: nowrap;
             }
             &-list {
                 display: flex;
@@ -97,8 +98,7 @@
             }
         }
         &__quick-links {
-            max-width: 180px;
-            width: 100%;
+            width: fit-content;
             color: var(--color-text-white);
             .quick-links__title {
                 color: var(--color-heading-white);
@@ -106,8 +106,7 @@
             }
         }
         &__contact {
-            max-width: 310px;
-            width: 100%;
+            width: fit-content;
             color: var(--color-text-white);
             &-title {
                 color: var(--color-heading-white);
@@ -130,5 +129,32 @@
         text-align: center;
         color: var(--color-text-white);
         padding-bottom: var(--space-fluid-lg);
+    }
+}
+
+@include respond-to("tablet") {
+    .footer {
+        &-cta {
+            flex-direction: row;
+            justify-content: space-between;
+            gap: var(--space-fluid-lg);
+            &__heading-wrapper {
+                max-width: 410px;
+            }
+            &__content {
+                max-width: 450px;
+            }
+        }
+
+        &-main__description {
+            font-size: var(--fs-md);
+            font-weight: 500;
+        }
+
+        &-main__nav-title,
+        &-main__contact-title,
+        .quick-links__title {
+            font-size: var(--fs-xl);
+        }
     }
 }
