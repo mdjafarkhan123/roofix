@@ -1,5 +1,6 @@
 @use "../../utils" as *;
 
+/*---------- UTF Component --------*/
 .badge {
     position: relative;
     display: inline-block;
@@ -48,7 +49,21 @@
     background-color: var(--color-border);
     height: 1px;
 }
+.slider-controls__btn {
+    display: inline-block;
+    width: fit-content;
+    padding: 0;
+    .btn__icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        line-height: 0;
+        width: 56px;
+        height: 56px;
+    }
+}
 
+/*--------- Page styling ---------*/
 .partner {
     background-color: var(--color-background);
     padding-block: var(--space-lg);
@@ -474,7 +489,7 @@
     &-item {
         display: grid;
         background-color: var(--color-background);
-        padding: var(--space-sm);
+        padding: var(--space-sm) var(--space-md);
         border-radius: var(--round-md);
         gap: var(--space-md);
         &__platform {
@@ -942,7 +957,7 @@
 
     .projects {
         &__content {
-            padding-top: 35vh;
+            padding-top: 40vh;
         }
     }
 

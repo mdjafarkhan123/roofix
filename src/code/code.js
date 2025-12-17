@@ -1,4 +1,57 @@
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Splide from "@splidejs/splide";
+import Lenis from "lenis";
 document.addEventListener("DOMContentLoaded", () => {
+    gsap.registerPlugin(ScrollTrigger);
+    function smoothScroll() {
+        const lenis = new Lenis({
+            wheelMultiplier: 1.6,
+            smoothWheel: true,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    }
+    function slider() {
+        const splideEl = document.querySelector(".splide");
+        if (!splideEl) return;
+
+        const splide = new Splide(splideEl, {
+            type: "loop",
+            perPage: 3,
+            gap: "2rem",
+            arrows: false,
+            pagination: false,
+            breakpoints: {
+                1024: { perPage: 2 },
+                640: { perPage: 1 },
+            },
+        });
+
+        splide.mount();
+
+        const prevBtn = document.querySelectorAll(
+            ".slider-controls__btn--prev"
+        );
+        const nextBtn = document.querySelectorAll(
+            ".slider-controls__btn--next"
+        );
+
+        prevBtn.forEach((item) => {
+            item?.addEventListener("click", () => {
+                splide.go("<");
+            });
+        });
+        nextBtn.forEach((item) => {
+            item?.addEventListener("click", () => {
+                splide.go("<");
+            });
+        });
+    }
     function mobileMenu() {
         const breakpoint = 992;
         if (window.innerWidth >= breakpoint) {
@@ -73,8 +126,51 @@ document.addEventListener("DOMContentLoaded", () => {
         lazyBGs.forEach((el) => io.observe(el));
     }
 
-    lazyImageLoad();
+    function cardStackingEffect() {
+        const cards = document.querySelectorAll(".projects__item");
+        const container = document.querySelector(".projects__list");
+        const lastCard = cards[cards.length - 1];
 
-    buttonEffect();
+        cards.forEach((card, index) => {
+            // Skip the last card
+            if (index === cards.length - 1) return;
+
+            // Define the next card for the scaling end point
+            const nextCard = cards[index + 1];
+
+            // 1. PINNING LOGIC
+            // (Stays pinned until the very last card, as you requested)
+            ScrollTrigger.create({
+                trigger: card,
+                start: "top 60",
+                endTrigger: lastCard,
+                end: "top 100",
+                pin: true,
+                pinSpacing: false,
+                id: `pin-${index}`,
+            });
+
+            // 2. SCALING LOGIC
+            // (Only runs until the NEXT card reaches the top)
+            gsap.to(card, {
+                scale: 0.7,
+                ease: "none",
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 100",
+                    endTrigger: nextCard,
+                    end: "top 100",
+                    scrub: 1.4,
+                    id: `scale-${index}`,
+                },
+            });
+        });
+    }
+
+    smoothScroll();
     mobileMenu();
+    buttonEffect();
+    lazyImageLoad();
+    slider();
+    cardStackingEffect();
 });

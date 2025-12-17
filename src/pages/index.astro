@@ -1,12 +1,13 @@
 ---
 import { Image } from "astro:assets";
 import Button from "../components/Button.astro";
+import underTheFold from "../styles/pages/home/home.scss?url";
+import splideCssUrl from "@splidejs/splide/css?url";
 import Layout from "../layout/Layout.astro";
 import heroBgMobile from "../assets/images/herobg.avif";
 import heroBgTablet from "../assets/images/heroBgSm.avif";
 import heroBgLaptop from "../assets/images/heroBgMd.avif";
 import heroBgDesktop from "../assets/images/heroBgLg.avif";
-import underTheFold from "../styles/pages/home/home.scss?url";
 import googleImg from "../assets/images/googel.avif";
 import fbImg from "../assets/images/facebook.avif";
 import trustpilotImg from "../assets/images/trustpilot.avif";
@@ -961,7 +962,7 @@ const serviceLocations = [
                     >
                         <button
                             type="button"
-                            class="slider-controls__btn slider-controls__btn--prev btn btn--primary"
+                            class="slider-controls__btn slider-controls__btn--prev"
                             aria-label="Previous service"
                         >
                             <span class="btn__icon" aria-hidden="true">
@@ -982,7 +983,7 @@ const serviceLocations = [
 
                         <button
                             type="button"
-                            class="slider-controls__btn slider-controls__btn--next btn btn--primary"
+                            class="slider-controls__btn slider-controls__btn--next"
                             aria-label="Next service"
                         >
                             <span class="btn__icon" aria-hidden="true">
@@ -1003,61 +1004,67 @@ const serviceLocations = [
                 </div>
             </div>
             <div class="testimonial__content">
-                <div class="testimonial__list">
-                    {
-                        testimonial.map((item, i) => (
-                            <article
-                                class="testimonial-item swiper-slide"
-                                role="group"
-                                aria-roledescription="slide"
-                                aria-label={`Testimonial by ${item.name}`}
-                            >
-                                <div class="testimonial-item__platform">
-                                    <div class="testimonial-item__platform-logo">
-                                        <Image
-                                            class="testimonial-item__platform-logo"
-                                            src={item.platform}
-                                            alt={"Platform Logo"}
-                                        />
-                                    </div>
-                                    <div class="testimonial-item__platform-rating">
-                                        {Array.from({ length: 5 }).map(
-                                            (_, i) => (
-                                                <svg
-                                                    class="icon"
-                                                    width="20"
-                                                    height="20"
-                                                >
-                                                    <use xlink:href="/sprite.svg#star-fill" />
-                                                </svg>
-                                            )
-                                        )}
-                                    </div>
-                                </div>
-                                <div class="testimonial-item__content">
-                                    <blockquote class="testimonial-item__feedback">
-                                        <p>{item.quote}</p>
-                                    </blockquote>
-                                </div>
-
-                                <div class="testimonial-item__author">
-                                    <div class="testimonial-item__author-media">
-                                        <Image
-                                            class="testimonial-item__author-image"
-                                            src={item.image}
-                                            alt={item.name}
-                                        />
-                                    </div>
-                                    <div class="testimonial-item__author-info">
-                                        <div class="author-name">
-                                            {item.name}
+                <div class="splide">
+                    <div class="splide__track">
+                        <div class="testimonial__list splide__list">
+                            {
+                                testimonial.map((item, i) => (
+                                    <article
+                                        class="testimonial-item splide__slide"
+                                        role="group"
+                                        aria-roledescription="slide"
+                                        aria-label={`Testimonial by ${item.name}`}
+                                    >
+                                        <div class="testimonial-item__platform">
+                                            <div class="testimonial-item__platform-logo">
+                                                <Image
+                                                    class="testimonial-item__platform-logo"
+                                                    src={item.platform}
+                                                    alt={"Platform Logo"}
+                                                />
+                                            </div>
+                                            <div class="testimonial-item__platform-rating">
+                                                {Array.from({ length: 5 }).map(
+                                                    (_, i) => (
+                                                        <svg
+                                                            class="icon"
+                                                            width="20"
+                                                            height="20"
+                                                        >
+                                                            <use xlink:href="/sprite.svg#star-fill" />
+                                                        </svg>
+                                                    )
+                                                )}
+                                            </div>
                                         </div>
-                                        <p class="author-role">{item.role}</p>
-                                    </div>
-                                </div>
-                            </article>
-                        ))
-                    }
+                                        <div class="testimonial-item__content">
+                                            <blockquote class="testimonial-item__feedback">
+                                                <p>{item.quote}</p>
+                                            </blockquote>
+                                        </div>
+
+                                        <div class="testimonial-item__author">
+                                            <div class="testimonial-item__author-media">
+                                                <Image
+                                                    class="testimonial-item__author-image"
+                                                    src={item.image}
+                                                    alt={item.name}
+                                                />
+                                            </div>
+                                            <div class="testimonial-item__author-info">
+                                                <div class="author-name">
+                                                    {item.name}
+                                                </div>
+                                                <p class="author-role">
+                                                    {item.role}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </article>
+                                ))
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div
                     class="slider-controls"
@@ -1066,7 +1073,7 @@ const serviceLocations = [
                 >
                     <button
                         type="button"
-                        class="slider-controls__btn slider-controls__btn--prev btn btn--primary"
+                        class="slider-controls__btn slider-controls__btn--prev"
                         aria-label="Previous service"
                     >
                         <span class="btn__icon" aria-hidden="true">
@@ -1087,7 +1094,7 @@ const serviceLocations = [
 
                     <button
                         type="button"
-                        class="slider-controls__btn slider-controls__btn--next btn btn--primary"
+                        class="slider-controls__btn slider-controls__btn--next"
                         aria-label="Next service"
                     >
                         <span class="btn__icon" aria-hidden="true">
@@ -1237,6 +1244,7 @@ const serviceLocations = [
     </section>
     <Fragment slot="bottom-style">
         <link rel="stylesheet" href={underTheFold} />
+        <link rel="stylesheet" href={splideCssUrl} />
     </Fragment>
 </Layout>
 <style lang="scss">
@@ -1549,10 +1557,11 @@ const serviceLocations = [
                 }
             }
             &__info {
-                &-group {
+                & &-group {
                     flex-direction: row-reverse;
                     flex-wrap: wrap;
                     justify-content: flex-end;
+                    align-items: center;
                 }
             }
             & &__image-box {
