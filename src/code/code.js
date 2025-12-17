@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lazyBGs.forEach((el) => io.observe(el));
     }
-
     function cardStackingEffect() {
         const cards = document.querySelectorAll(".projects__item");
         const container = document.querySelector(".projects__list");
@@ -166,11 +165,45 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    function counterAnimation() {
+        // Select all elements containing the numbers
+        const counters = document.querySelectorAll(".stats__item-value");
 
+        counters.forEach((counter) => {
+            gsap.from(counter, {
+                scrollTrigger: {
+                    trigger: counter,
+                    start: "top 85%",
+                    end: "top bottom",
+                    toggleActions: "restart none none restart",
+                },
+                innerText: 0,
+                duration: 2,
+                ease: "power1.out",
+                snap: { innerText: 1 },
+            });
+        });
+    }
+
+    function serviceAnimation() {
+        if (window.innerWidth < 992) return;
+        const services = document.querySelectorAll(".service-item");
+
+        services.forEach((service) => {
+            ScrollTrigger.create({
+                trigger: service,
+                start: "top 60%",
+                end: "bottom+=60 60%",
+                toggleClass: "active-service",
+            });
+        });
+    }
     smoothScroll();
     mobileMenu();
     buttonEffect();
     lazyImageLoad();
     slider();
     cardStackingEffect();
+    counterAnimation();
+    serviceAnimation();
 });

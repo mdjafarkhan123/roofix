@@ -62,10 +62,10 @@ import pricingIcon from "../assets/images/honesty.svg";
 import localIcon from "../assets/images/local.svg";
 
 const stats = [
-    { value: "20+", title: "Years of experience" },
-    { value: "99%", title: "Client satisfaction" },
-    { value: "3K+", title: "Projects completed" },
-    { value: "24/7", title: "Emergency service" },
+    { value: "20", prefix: "+", title: "Years of experience" },
+    { value: "99", prefix: "%", title: "Client satisfaction" },
+    { value: "3K", prefix: "+", title: "Projects completed" },
+    { value: "24", prefix: "/7", title: "Emergency service" },
 ];
 
 const services = [
@@ -653,7 +653,14 @@ const serviceLocations = [
                 {
                     stats.map((item) => (
                         <div class="stats__item">
-                            <div class="stats__item-number">{item.value}</div>
+                            <div class="stats__item-number">
+                                <span class="stats__item-value">
+                                    {item.value}
+                                </span>
+                                <span class="stats__item-suffix">
+                                    {item.prefix}
+                                </span>
+                            </div>
                             <div class="stats__item-label">{item.title}</div>
                         </div>
                     ))

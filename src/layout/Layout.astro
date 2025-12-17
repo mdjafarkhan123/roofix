@@ -182,15 +182,17 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
                 padding: 16px 44px !important;
                 border-radius: 100px;
                 transform: translateX(0);
-                gap: 25px;
+                gap: var(--space-2xl);
                 &-item {
                     a {
                         color: var(--color-text-dark);
                     }
                     line-height: 1;
-                    padding: 0.6rem 1.4rem;
-                    background-color: var(--color-white);
                     border-radius: 50px;
+                    &:nth-of-type(1) {
+                        padding: 0.6rem 1.4rem;
+                        background-color: var(--color-white);
+                    }
                 }
             }
             &__menu-toggler {
