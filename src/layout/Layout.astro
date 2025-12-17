@@ -2,6 +2,7 @@
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
 import utfFooterCss from "../styles/pages/footer/footer.scss?url";
+import baseStyle from "../styles/globals/base.scss?url";
 ---
 
 <!doctype html>
@@ -28,6 +29,7 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
             <slot />
         </main>
         <Footer />
+        <link rel="stylesheet" href={baseStyle} />
         <slot name="bottom-style" />
         <link rel="stylesheet" href={utfFooterCss} />
     </body>
@@ -35,7 +37,7 @@ import utfFooterCss from "../styles/pages/footer/footer.scss?url";
 <script src="../code/code.js"></script>
 
 <style is:global lang="scss">
-    @use "../styles/globals";
+    @use "../styles/globals/styleguide";
     @use "../styles/utils" as *;
     /*======== Header design =======*/
     .header {
