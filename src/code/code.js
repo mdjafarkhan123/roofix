@@ -4,6 +4,12 @@ import Splide from "@splidejs/splide";
 import Lenis from "lenis";
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
+    const header = document.querySelector("header");
+    const main = document.querySelector("main");
+    const footer = document.querySelector("footer");
+    gsap.to([header, main, footer], {
+        autoAlpha: 1,
+    });
     function smoothScroll() {
         const lenis = new Lenis({
             wheelMultiplier: 1.6,
