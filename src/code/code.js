@@ -4,12 +4,7 @@ import Splide from "@splidejs/splide";
 import Lenis from "lenis";
 document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
-    const header = document.querySelector("header");
-    const main = document.querySelector("main");
-    const footer = document.querySelector("footer");
-    gsap.to([header, main, footer], {
-        autoAlpha: 1,
-    });
+
     function smoothScroll() {
         const lenis = new Lenis({
             wheelMultiplier: 1.6,
@@ -182,6 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     start: "top 85%",
                     end: "top bottom",
                     toggleActions: "restart none none restart",
+                    markers: true,
                 },
                 innerText: 0,
                 duration: 2,
@@ -189,6 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 snap: { innerText: 1 },
             });
         });
+        console.log(counters);
     }
 
     function serviceAnimation() {
@@ -204,6 +201,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
+    avoidFOUC();
     smoothScroll();
     mobileMenu();
     buttonEffect();
@@ -212,4 +210,5 @@ document.addEventListener("DOMContentLoaded", () => {
     cardStackingEffect();
     counterAnimation();
     serviceAnimation();
+    ScrollTrigger.refresh();
 });
