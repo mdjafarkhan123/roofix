@@ -177,7 +177,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     start: "top 85%",
                     end: "top bottom",
                     toggleActions: "restart none none restart",
-                    markers: true,
                 },
                 innerText: 0,
                 duration: 2,
@@ -201,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    avoidFOUC();
+
     smoothScroll();
     mobileMenu();
     buttonEffect();
@@ -210,5 +209,4 @@ document.addEventListener("DOMContentLoaded", () => {
     cardStackingEffect();
     counterAnimation();
     serviceAnimation();
-    ScrollTrigger.refresh();
 });
