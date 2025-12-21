@@ -40,6 +40,10 @@ import baseStyle from "../styles/globals/base.scss?url";
     @use "../styles/globals/styleguide";
     @use "../styles/utils" as *;
     /*======== Header design =======*/
+    html {
+        visibility: hidden;
+        overflow: hidden;
+    }
     .header {
         $line-thickness: 2px;
         position: relative;
@@ -154,9 +158,9 @@ import baseStyle from "../styles/globals/base.scss?url";
             border-radius: 50px;
             text-transform: capitalize;
             line-height: 1;
-            &--desktop {
-                display: none;
-            }
+        }
+        #header__cta-desktop {
+            display: none;
         }
     }
 
@@ -200,13 +204,11 @@ import baseStyle from "../styles/globals/base.scss?url";
             &__menu-toggler {
                 display: none;
             }
-            &__cta {
-                &--mobile {
-                    display: none;
-                }
-                &--desktop {
-                    display: inline-flex;
-                }
+            #header__cta-desktop {
+                display: inline-flex;
+            }
+            #header__cta-mobile {
+                display: none;
             }
         }
     }

@@ -1,8 +1,9 @@
 ---
-const { title, type } = Astro.props;
+const { title, type, id } = Astro.props;
 ---
 
 <a
+    id={id}
     href="#start-case"
     class=`btn btn--${type} magnetic-button`
     role="button"
