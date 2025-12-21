@@ -493,7 +493,9 @@ hr {
     }
 }
 
-section {
+header,
+section,
+footer {
     visibility: visible;
 }
 //========== Css preset for gsap animation =========//
