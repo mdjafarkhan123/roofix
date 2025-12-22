@@ -553,7 +553,7 @@ const serviceLocations = [
     <section id="about" class="about">
         <div class="about__wrapper container">
             <div class="about__info">
-                <div class="about__info-intro">
+                <div class="about__info-intro slide-up">
                     <div class="badge">about us</div>
                     <h2 class="about__heading">
                         Your <span class="colored-text">trusted</span> roofing company
@@ -576,7 +576,7 @@ const serviceLocations = [
                         >
                     </button>
                 </div>
-                <div class="about__info-detail">
+                <div class="about__info-detail slide-up">
                     <div class="badge__list">
                         <Image
                             class="badge__item"
@@ -683,7 +683,7 @@ const serviceLocations = [
     </section>
     <section id="service" class="service">
         <div class="service__wrapper container">
-            <div class="service__intro">
+            <div class="service__intro slide-up">
                 <div class="badge">services</div>
                 <h2 class="service__heading">
                     Your <span class="colored-text">roofing</span> needs fully covered
@@ -694,7 +694,7 @@ const serviceLocations = [
                     {
                         services.map((service, i) => (
                             <>
-                                <article class="service-item">
+                                <article class="service-item slide-up">
                                     <div class="service-item__image-wrapper">
                                         <Image
                                             class="service__item-image"
@@ -748,7 +748,7 @@ const serviceLocations = [
     </section>
     <section id="process" class="process">
         <div class="process__wrapper container">
-            <div class="process__intro">
+            <div class="process__intro slide-up">
                 <div class="process__intro-header">
                     <div class="badge">how we work</div>
                     <h2 class="process__heading">
@@ -764,7 +764,7 @@ const serviceLocations = [
                     <Button type="primary" title="get a free quote" />
                 </div>
             </div>
-            <div class="process__list">
+            <div class="process__list slide-up">
                 {
                     process.map((item, index) => (
                         <div class="process__item">
@@ -794,7 +794,7 @@ const serviceLocations = [
     </section>
     <section id="projects" class="projects">
         <div class="projects__wrapper container">
-            <div class="projects__intro">
+            <div class="projects__intro slide-up">
                 <div class="badge">projects</div>
                 <h2 class="projects__heading">
                     Our featured <span class="colored-text">projects</span>
@@ -841,7 +841,7 @@ const serviceLocations = [
     </section>
     <section id="reason" class="reason">
         <div class="reason__wrapper container">
-            <div class="reason__intro">
+            <div class="reason__intro slide-up">
                 <div class="reason__intro-heading">
                     <div class="badge">why choose us</div>
                     <h2 class="reason__heading">
@@ -861,7 +861,7 @@ const serviceLocations = [
                     >
                 </div>
             </div>
-            <div class="reason__content">
+            <div class="reason__content slide-up">
                 <div class="reason__list">
                     {
                         whyChooseUs.map((item, i) => (
@@ -911,7 +911,7 @@ const serviceLocations = [
     </section>
     <section id="team" class="team">
         <div class="team__wrapper container">
-            <div class="team__intro">
+            <div class="team__intro slide-up">
                 <div class="badge">our team</div>
                 <h2 class="team__heading">
                     Meet our <span class="colored-text">experts</span>
@@ -922,7 +922,7 @@ const serviceLocations = [
                     project.
                 </p>
             </div>
-            <div class="team__list">
+            <div class="team__list slide-up">
                 {
                     team.map((item, i) => (
                         <div class="team__item">
@@ -941,21 +941,21 @@ const serviceLocations = [
                     ))
                 }
             </div>
-            <div class="team__cta">
+            <div class="team__cta slide-up">
                 <Button type="secondary" title="view everyone" />
             </div>
         </div>
     </section>
     <section id="testimonial" class="testimonial">
         <div class="testimonial__wrapper container">
-            <div class="testimonial__header">
+            <div class="testimonial__header slide-up">
                 <div class="testimonial__header-intro">
                     <div class="badge">testimonials</div>
                     <h2 class="testimonial__heading">
                         What <span class="colored-text">clients</span> are saying
                     </h2>
                 </div>
-                <div class="testimonial__header-content">
+                <div class="testimonial__header-content slide-up">
                     <p class="testimonial__header-description">
                         Hear directly from the people we've served. From small
                         repairs to complete roof installations, our clients
@@ -1010,7 +1010,7 @@ const serviceLocations = [
                     </div>
                 </div>
             </div>
-            <div class="testimonial__content">
+            <div class="testimonial__content slide-up">
                 <div class="splide">
                     <div class="splide__track">
                         <div class="testimonial__list splide__list">
@@ -1124,14 +1124,14 @@ const serviceLocations = [
     </section>
     <section id="blogs" class="blogs">
         <div class="blogs__wrapper container">
-            <div class="blogs__intro">
+            <div class="blogs__intro slide-up">
                 <div class="badge">articles</div>
                 <h2 class="blogs__heading">
                     Discover <span class="colored-text">roofing guides</span> and
                     trends
                 </h2>
             </div>
-            <div class="blogs__list">
+            <div class="blogs__list slide-up">
                 {
                     blogs.map((item, i) => (
                         <div class="blogs__item">
@@ -1150,14 +1150,14 @@ const serviceLocations = [
                     ))
                 }
             </div>
-            <div class="blogs__cta">
+            <div class="blogs__cta slide-up">
                 <Button type="primary" title="view all posts" />
             </div>
         </div>
     </section>
     <section id="locations" class="locations">
         <div class="locations__wrapper container">
-            <div class="locations__intro">
+            <div class="locations__intro slide-up">
                 <div class="locations__intro-header">
                     <div class="badge">locations</div>
                     <h2 class="locations__heading">
@@ -1173,7 +1173,7 @@ const serviceLocations = [
                     <Button type="primary" title="get a free quote" />
                 </div>
             </div>
-            <div class="locations__list">
+            <div class="locations__list slide-up">
                 <div class="locations__list-wrapper">
                     {
                         serviceLocations

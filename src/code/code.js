@@ -73,12 +73,11 @@ function initSlider() {
 
     splide.mount();
 
-    // FIXED: Correct button directions
     const prevBtns = document.querySelectorAll(".slider-controls__btn--prev");
     const nextBtns = document.querySelectorAll(".slider-controls__btn--next");
 
-    const prevHandler = () => splide.go("<"); // Previous goes backward
-    const nextHandler = () => splide.go(">"); // Next goes forward
+    const prevHandler = () => splide.go("<");
+    const nextHandler = () => splide.go(">");
 
     prevBtns.forEach((btn) => btn.addEventListener("click", prevHandler));
     nextBtns.forEach((btn) => btn.addEventListener("click", nextHandler));
@@ -104,7 +103,6 @@ function initMobileMenu() {
 
     if (!menuIcon || !menu) return null;
 
-    // Desktop: reset state and exit
     if (window.innerWidth >= TABLET) {
         menu.style.transform = "translateX(0)";
         menuIcon.setAttribute("aria-expanded", "false");
@@ -160,30 +158,22 @@ function initButtonEffect() {
 
         let rect = null;
 
-        // Enter: snap to mouse position instantly
         const handleEnter = (e) => {
             rect = button.getBoundingClientRect();
-
             bg.style.left = `${e.clientX - rect.left}px`;
             bg.style.top = `${e.clientY - rect.top}px`;
-
-            // Force reflow and re-enable transitions
             void bg.offsetWidth;
             bg.style.transition = "transform 0.5s ease-out, opacity 0.3s";
         };
 
-        // Leave: animate to exit point
         const handleLeave = (e) => {
             if (!rect) return;
-
             bg.style.transition = "all 0.5s ease-out";
             bg.style.left = `${e.clientX - rect.left}px`;
             bg.style.top = `${e.clientY - rect.top}px`;
             rect = null;
         };
 
-        // Optional: track mouse movement while hovering (if you want continuous tracking)
-        // Throttled for performance
         const handleMove = throttle((e) => {
             if (!rect) return;
             bg.style.left = `${e.clientX - rect.left}px`;
@@ -233,7 +223,6 @@ function initLazyImageLoad() {
                         observer.unobserve(el);
                         loadedCount++;
 
-                        // Auto-disconnect when all images loaded
                         if (loadedCount === lazyBGs.length) {
                             observer.disconnect();
                         }
@@ -241,7 +230,7 @@ function initLazyImageLoad() {
                 }
             });
         },
-        { rootMargin: "100px" } // Load 100px before entering viewport
+        { rootMargin: "100px" }
     );
 
     lazyBGs.forEach((el) => observer.observe(el));
@@ -266,7 +255,6 @@ function initCardStackingEffect() {
 
         const nextCard = cards[index + 1];
 
-        // Pin until last card
         const pinTrigger = ScrollTrigger.create({
             trigger: card,
             start: "top 60",
@@ -276,7 +264,6 @@ function initCardStackingEffect() {
             pinSpacing: false,
         });
 
-        // Scale until next card
         const animation = gsap.to(card, {
             scale: 0.7,
             ease: "none",
@@ -351,6 +338,69 @@ function initServiceAnimation() {
     };
 }
 
+function initSlideUpAnimation() {
+    // Exit early on mobile for better performance
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+
+    const elements = document.querySelectorAll(".slide-up");
+    if (!elements.length) return null;
+
+    const triggers = [];
+
+    elements.forEach((element) => {
+        const animation = gsap.from(element, {
+            opacity: 0,
+            y: 120,
+            duration: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: element,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+            },
+        });
+
+        triggers.push(animation.scrollTrigger);
+    });
+
+    return {
+        destroy: () => {
+            triggers.forEach((trigger) => trigger?.kill());
+        },
+    };
+}
+
+function initScaleInAnimation() {
+    // Exit early on mobile for better performance
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+
+    const elements = document.querySelectorAll(".scale-in");
+    if (!elements.length) return null;
+
+    const triggers = [];
+
+    elements.forEach((element) => {
+        const animation = gsap.from(element, {
+            opacity: 0,
+            scale: 1.5,
+            duration: 1.3,
+            ease: "power2.out",
+            scrollTrigger: {
+                trigger: element,
+                start: "bottom 85%",
+            },
+        });
+
+        triggers.push(animation.scrollTrigger);
+    });
+
+    return {
+        destroy: () => {
+            triggers.forEach((trigger) => trigger?.kill());
+        },
+    };
+}
+
 // Main initialization
 function init() {
     gsap.registerPlugin(ScrollTrigger);
@@ -364,16 +414,18 @@ function init() {
         cardStacking: initCardStackingEffect(),
         counterAnimation: initCounterAnimation(),
         serviceAnimation: initServiceAnimation(),
+        slideUpAnimation: initSlideUpAnimation(),
+        scaleInAnimation: initScaleInAnimation(),
     };
 
     // Handle window resize
     const handleResize = throttle(() => {
-        // Reinitialize breakpoint-dependent features
         const breakpointFeatures = [
             "mobileMenu",
             "buttonEffect",
             "cardStacking",
             "serviceAnimation",
+            "slideUpAnimation", // ✅ Added to resize handler
         ];
 
         breakpointFeatures.forEach((feature) => {
@@ -381,7 +433,6 @@ function init() {
                 instances[feature].destroy();
             }
 
-            // Reinitialize based on feature name
             switch (feature) {
                 case "mobileMenu":
                     instances[feature] = initMobileMenu();
@@ -395,6 +446,9 @@ function init() {
                 case "serviceAnimation":
                     instances[feature] = initServiceAnimation();
                     break;
+                case "slideUpAnimation":
+                    instances[feature] = initSlideUpAnimation();
+                    break;
             }
         });
 
@@ -403,7 +457,7 @@ function init() {
 
     window.addEventListener("resize", handleResize);
 
-    // Global cleanup (useful for SPAs or page transitions)
+    // Global cleanup
     window.__destroyAnimations = () => {
         window.removeEventListener("resize", handleResize);
         Object.values(instances).forEach((instance) => {
