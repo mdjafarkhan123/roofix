@@ -104,8 +104,7 @@ function initMobileMenu() {
     if (!menuIcon || !menu) return null;
 
     if (window.innerWidth >= TABLET) {
-        menu.style.transform = "translateX(0)";
-        menuIcon.setAttribute("aria-expanded", "false");
+        console.log("Running");
         return null;
     }
 
@@ -115,7 +114,7 @@ function initMobileMenu() {
     function toggleMenu() {
         isOpen = !isOpen;
         menuIcon.setAttribute("aria-expanded", String(isOpen));
-        menu.style.transform = isOpen ? "translateX(0)" : "translateX(100%)";
+        menu.style.transform = isOpen ? "translateX(0%)" : "translateX(100%)";
     }
 
     function closeMenu() {
