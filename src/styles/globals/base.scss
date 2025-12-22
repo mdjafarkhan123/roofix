@@ -493,6 +493,25 @@ hr {
     }
 }
 
+/*========== Scrollbar =======*/
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    position: absolute;
+    left: 0;
+    background-color: var(--color-primary);
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-accent);
+    border-radius: 100px;
+    height: 120px;
+}
+
 header,
 section,
 footer {
