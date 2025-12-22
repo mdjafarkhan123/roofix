@@ -501,9 +501,8 @@ hr {
 
 ::-webkit-scrollbar-track {
     position: absolute;
-    left: 0;
     background-color: var(--color-primary);
-    border-radius: 100px;
+    border-radius: 50px;
 }
 
 ::-webkit-scrollbar-thumb {
