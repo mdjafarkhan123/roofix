@@ -355,7 +355,6 @@ function initSlideUpAnimation() {
             scrollTrigger: {
                 trigger: element,
                 start: "top 85%",
-                toggleActions: "play none none reverse",
             },
         });
 
