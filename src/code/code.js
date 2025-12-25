@@ -85,8 +85,7 @@ function initMobileMenu() {
     const menuIcon = document.querySelector(".header__menu-toggler");
     const menu = document.getElementById("main-navigation");
 
-    if (!menuIcon || !menu || window.innerWidth >= CONFIG.BREAKPOINTS.TABLET)
-        return;
+    if (!menuIcon || !menu) return;
 
     const menuItems = menu.querySelectorAll(".header__menu-item");
     let isOpen = menuIcon.getAttribute("aria-expanded") === "true";
@@ -114,8 +113,6 @@ function initMobileMenu() {
 
 // Button effect
 function initButtonEffect() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
-
     const buttons = document.querySelectorAll(".btn");
 
     buttons.forEach((button) => {
@@ -178,8 +175,6 @@ function initLazyImageLoad() {
 
 // Card stacking effect
 function initCardStackingEffect() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
-
     const cards = document.querySelectorAll(".projects__item");
     if (cards.length < 2) return;
 
@@ -236,8 +231,6 @@ function initCounterAnimation() {
 
 // Service animation
 function initServiceAnimation() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.TABLET) return;
-
     const services = document.querySelectorAll(".service-item");
     if (!services.length) return;
 
@@ -253,8 +246,6 @@ function initServiceAnimation() {
 
 // Slide up animation
 function initSlideUpAnimation() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
-
     const elements = document.querySelectorAll(".slide-up");
     if (!elements.length) return;
 
@@ -274,8 +265,6 @@ function initSlideUpAnimation() {
 
 // Scale in animation
 function initScaleInAnimation() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
-
     const elements = document.querySelectorAll(".scale-in");
     if (!elements.length) return;
 
@@ -296,19 +285,47 @@ function initScaleInAnimation() {
 // Main initialization
 function init() {
     gsap.registerPlugin(ScrollTrigger);
+    let mm = gsap.matchMedia();
 
+    // Universal initializations
     initSmoothScroll();
-    initMobileMenu();
-    initButtonEffect();
     initLazyImageLoad();
     initSlider();
-    initCardStackingEffect();
     initCounterAnimation();
-    initServiceAnimation();
-    initSlideUpAnimation();
-    initScaleInAnimation();
 
-    // Handle window resize with throttle
+    // Responsive logic using matchMedia
+    mm.add(
+        {
+            // Conditions
+            isDesktop: `(min-width: ${CONFIG.BREAKPOINTS.MOBILE}px)`,
+            isTablet: `(min-width: ${CONFIG.BREAKPOINTS.TABLET}px)`,
+            isMobile: `(max-width: ${CONFIG.BREAKPOINTS.TABLET - 1}px)`,
+        },
+        (context) => {
+            let { isDesktop, isTablet, isMobile } = context.conditions;
+
+            if (isDesktop) {
+                initButtonEffect();
+                initCardStackingEffect();
+                initSlideUpAnimation();
+                initScaleInAnimation();
+            }
+
+            if (isTablet) {
+                initServiceAnimation();
+            }
+
+            if (isMobile) {
+                initMobileMenu();
+            }
+
+            return () => {
+                // GSAP handles ScrollTrigger cleanup automatically here
+            };
+        }
+    );
+
+    // Handle window resize with throttle for general refresh
     window.addEventListener(
         "resize",
         throttle(() => {
