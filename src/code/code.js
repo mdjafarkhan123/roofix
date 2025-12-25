@@ -54,14 +54,12 @@ function initSmoothScroll() {
         requestAnimationFrame(raf);
     }
     requestAnimationFrame(raf);
-
-    return { destroy: () => lenis.destroy() };
 }
 
-// Slider with CORRECT button directions
+// Slider
 function initSlider() {
     const splideEl = document.querySelector(".splide");
-    if (!splideEl) return null;
+    if (!splideEl) return;
 
     const splide = new Splide(splideEl, {
         ...CONFIG.SPLIDE,
@@ -69,44 +67,26 @@ function initSlider() {
             [CONFIG.BREAKPOINTS.DESKTOP]: { perPage: 2 },
             640: { perPage: 1 },
         },
-    });
-
-    splide.mount();
+    }).mount();
 
     const prevBtns = document.querySelectorAll(".slider-controls__btn--prev");
     const nextBtns = document.querySelectorAll(".slider-controls__btn--next");
 
-    const prevHandler = () => splide.go("<");
-    const nextHandler = () => splide.go(">");
-
-    prevBtns.forEach((btn) => btn.addEventListener("click", prevHandler));
-    nextBtns.forEach((btn) => btn.addEventListener("click", nextHandler));
-
-    return {
-        destroy: () => {
-            splide.destroy();
-            prevBtns.forEach((btn) =>
-                btn.removeEventListener("click", prevHandler)
-            );
-            nextBtns.forEach((btn) =>
-                btn.removeEventListener("click", nextHandler)
-            );
-        },
-    };
+    prevBtns.forEach((btn) =>
+        btn.addEventListener("click", () => splide.go("<"))
+    );
+    nextBtns.forEach((btn) =>
+        btn.addEventListener("click", () => splide.go(">"))
+    );
 }
 
-// Mobile menu with keyboard support
+// Mobile menu
 function initMobileMenu() {
-    const { TABLET } = CONFIG.BREAKPOINTS;
     const menuIcon = document.querySelector(".header__menu-toggler");
     const menu = document.getElementById("main-navigation");
 
-    if (!menuIcon || !menu) return null;
-
-    if (window.innerWidth >= TABLET) {
-        console.log("Running");
-        return null;
-    }
+    if (!menuIcon || !menu || window.innerWidth >= CONFIG.BREAKPOINTS.TABLET)
+        return;
 
     const menuItems = menu.querySelectorAll(".header__menu-item");
     let isOpen = menuIcon.getAttribute("aria-expanded") === "true";
@@ -125,31 +105,18 @@ function initMobileMenu() {
         }
     }
 
-    function handleEscape(e) {
-        if (e.key === "Escape") closeMenu();
-    }
-
     menuIcon.addEventListener("click", toggleMenu);
     menuItems.forEach((item) => item.addEventListener("click", closeMenu));
-    document.addEventListener("keydown", handleEscape);
-
-    return {
-        destroy: () => {
-            menuIcon.removeEventListener("click", toggleMenu);
-            menuItems.forEach((item) =>
-                item.removeEventListener("click", closeMenu)
-            );
-            document.removeEventListener("keydown", handleEscape);
-        },
-    };
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMenu();
+    });
 }
 
-// Button effect with proper cleanup and performance
+// Button effect
 function initButtonEffect() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
 
     const buttons = document.querySelectorAll(".btn");
-    const handlers = [];
 
     buttons.forEach((button) => {
         const bg = button.querySelector(".btn__bg");
@@ -157,58 +124,37 @@ function initButtonEffect() {
 
         let rect = null;
 
-        const handleEnter = (e) => {
+        button.addEventListener("mouseenter", (e) => {
             rect = button.getBoundingClientRect();
             bg.style.left = `${e.clientX - rect.left}px`;
             bg.style.top = `${e.clientY - rect.top}px`;
             void bg.offsetWidth;
             bg.style.transition = "transform 0.5s ease-out, opacity 0.3s";
-        };
+        });
 
-        const handleLeave = (e) => {
+        button.addEventListener("mouseleave", (e) => {
             if (!rect) return;
             bg.style.transition = "all 0.5s ease-out";
             bg.style.left = `${e.clientX - rect.left}px`;
             bg.style.top = `${e.clientY - rect.top}px`;
             rect = null;
-        };
-
-        const handleMove = throttle((e) => {
-            if (!rect) return;
-            bg.style.left = `${e.clientX - rect.left}px`;
-            bg.style.top = `${e.clientY - rect.top}px`;
-        }, 16);
-
-        button.addEventListener("mouseenter", handleEnter);
-        button.addEventListener("mouseleave", handleLeave);
-
-        handlers.push({
-            button,
-            handleEnter,
-            handleLeave,
-            handleMove,
         });
-    });
 
-    return {
-        destroy: () => {
-            handlers.forEach(
-                ({ button, handleEnter, handleLeave, handleMove }) => {
-                    button.removeEventListener("mouseenter", handleEnter);
-                    button.removeEventListener("mouseleave", handleLeave);
-                    button.removeEventListener("mousemove", handleMove);
-                }
-            );
-        },
-    };
+        button.addEventListener(
+            "mousemove",
+            throttle((e) => {
+                if (!rect) return;
+                bg.style.left = `${e.clientX - rect.left}px`;
+                bg.style.top = `${e.clientY - rect.top}px`;
+            }, 16)
+        );
+    });
 }
 
-// Lazy image loading with cleanup
+// Lazy image loading
 function initLazyImageLoad() {
     const lazyBGs = document.querySelectorAll(".lazy-bg");
-    if (!lazyBGs.length) return null;
-
-    let loadedCount = 0;
+    if (!lazyBGs.length) return;
 
     const observer = new IntersectionObserver(
         (entries) => {
@@ -220,11 +166,6 @@ function initLazyImageLoad() {
                     if (bgUrl) {
                         el.style.backgroundImage = `url(${bgUrl})`;
                         observer.unobserve(el);
-                        loadedCount++;
-
-                        if (loadedCount === lazyBGs.length) {
-                            observer.disconnect();
-                        }
                     }
                 }
             });
@@ -233,28 +174,23 @@ function initLazyImageLoad() {
     );
 
     lazyBGs.forEach((el) => observer.observe(el));
-
-    return {
-        destroy: () => observer.disconnect(),
-    };
 }
 
 // Card stacking effect
 function initCardStackingEffect() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
 
     const cards = document.querySelectorAll(".projects__item");
-    if (cards.length < 2) return null;
+    if (cards.length < 2) return;
 
     const lastCard = cards[cards.length - 1];
-    const triggers = [];
 
     cards.forEach((card, index) => {
         if (index === cards.length - 1) return;
 
         const nextCard = cards[index + 1];
 
-        const pinTrigger = ScrollTrigger.create({
+        ScrollTrigger.create({
             trigger: card,
             start: "top 60",
             endTrigger: lastCard,
@@ -263,7 +199,7 @@ function initCardStackingEffect() {
             pinSpacing: false,
         });
 
-        const animation = gsap.to(card, {
+        gsap.to(card, {
             scale: 0.7,
             ease: "none",
             scrollTrigger: {
@@ -274,24 +210,16 @@ function initCardStackingEffect() {
                 scrub: 1.4,
             },
         });
-
-        triggers.push(pinTrigger, animation.scrollTrigger);
     });
-
-    return {
-        destroy: () => triggers.forEach((t) => t?.kill()),
-    };
 }
 
 // Counter animation
 function initCounterAnimation() {
     const counters = document.querySelectorAll(".stats__item-value");
-    if (!counters.length) return null;
-
-    const animations = [];
+    if (!counters.length) return;
 
     counters.forEach((counter) => {
-        const animation = gsap.from(counter, {
+        gsap.from(counter, {
             scrollTrigger: {
                 trigger: counter,
                 start: "top 85%",
@@ -303,51 +231,35 @@ function initCounterAnimation() {
             ease: "power1.out",
             snap: { innerText: 1 },
         });
-
-        animations.push(animation.scrollTrigger);
     });
-
-    return {
-        destroy: () => animations.forEach((t) => t?.kill()),
-    };
 }
 
 // Service animation
 function initServiceAnimation() {
-    if (window.innerWidth < CONFIG.BREAKPOINTS.TABLET) return null;
+    if (window.innerWidth < CONFIG.BREAKPOINTS.TABLET) return;
 
     const services = document.querySelectorAll(".service-item");
-    if (!services.length) return null;
-
-    const triggers = [];
+    if (!services.length) return;
 
     services.forEach((service) => {
-        const trigger = ScrollTrigger.create({
+        ScrollTrigger.create({
             trigger: service,
             start: "top 60%",
             end: "bottom+=60 60%",
             toggleClass: "active-service",
         });
-
-        triggers.push(trigger);
     });
-
-    return {
-        destroy: () => triggers.forEach((t) => t.kill()),
-    };
 }
 
+// Slide up animation
 function initSlideUpAnimation() {
-    // Exit early on mobile for better performance
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
 
     const elements = document.querySelectorAll(".slide-up");
-    if (!elements.length) return null;
-
-    const triggers = [];
+    if (!elements.length) return;
 
     elements.forEach((element) => {
-        const animation = gsap.from(element, {
+        gsap.from(element, {
             opacity: 0,
             y: 120,
             duration: 1,
@@ -357,28 +269,18 @@ function initSlideUpAnimation() {
                 start: "top 85%",
             },
         });
-
-        triggers.push(animation.scrollTrigger);
     });
-
-    return {
-        destroy: () => {
-            triggers.forEach((trigger) => trigger?.kill());
-        },
-    };
 }
 
+// Scale in animation
 function initScaleInAnimation() {
-    // Exit early on mobile for better performance
-    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return null;
+    if (window.innerWidth < CONFIG.BREAKPOINTS.MOBILE) return;
 
     const elements = document.querySelectorAll(".scale-in");
-    if (!elements.length) return null;
-
-    const triggers = [];
+    if (!elements.length) return;
 
     elements.forEach((element) => {
-        const animation = gsap.from(element, {
+        gsap.from(element, {
             opacity: 0,
             scale: 1.5,
             duration: 1.3,
@@ -388,83 +290,31 @@ function initScaleInAnimation() {
                 start: "bottom 85%",
             },
         });
-
-        triggers.push(animation.scrollTrigger);
     });
-
-    return {
-        destroy: () => {
-            triggers.forEach((trigger) => trigger?.kill());
-        },
-    };
 }
 
 // Main initialization
 function init() {
     gsap.registerPlugin(ScrollTrigger);
 
-    const instances = {
-        smoothScroll: initSmoothScroll(),
-        mobileMenu: initMobileMenu(),
-        buttonEffect: initButtonEffect(),
-        lazyImageLoad: initLazyImageLoad(),
-        slider: initSlider(),
-        cardStacking: initCardStackingEffect(),
-        counterAnimation: initCounterAnimation(),
-        serviceAnimation: initServiceAnimation(),
-        slideUpAnimation: initSlideUpAnimation(),
-        scaleInAnimation: initScaleInAnimation(),
-    };
+    initSmoothScroll();
+    initMobileMenu();
+    initButtonEffect();
+    initLazyImageLoad();
+    initSlider();
+    initCardStackingEffect();
+    initCounterAnimation();
+    initServiceAnimation();
+    initSlideUpAnimation();
+    initScaleInAnimation();
 
-    // Handle window resize
-    const handleResize = throttle(() => {
-        const breakpointFeatures = [
-            "mobileMenu",
-            "buttonEffect",
-            "cardStacking",
-            "serviceAnimation",
-            "slideUpAnimation", // ✅ Added to resize handler
-        ];
-
-        breakpointFeatures.forEach((feature) => {
-            if (instances[feature]?.destroy) {
-                instances[feature].destroy();
-            }
-
-            switch (feature) {
-                case "mobileMenu":
-                    instances[feature] = initMobileMenu();
-                    break;
-                case "buttonEffect":
-                    instances[feature] = initButtonEffect();
-                    break;
-                case "cardStacking":
-                    instances[feature] = initCardStackingEffect();
-                    break;
-                case "serviceAnimation":
-                    instances[feature] = initServiceAnimation();
-                    break;
-                case "slideUpAnimation":
-                    instances[feature] = initSlideUpAnimation();
-                    break;
-            }
-        });
-
-        ScrollTrigger.refresh();
-    }, 300);
-
-    window.addEventListener("resize", handleResize);
-
-    // Global cleanup
-    window.__destroyAnimations = () => {
-        window.removeEventListener("resize", handleResize);
-        Object.values(instances).forEach((instance) => {
-            if (instance?.destroy) instance.destroy();
-        });
-        ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-
-    return instances;
+    // Handle window resize with throttle
+    window.addEventListener(
+        "resize",
+        throttle(() => {
+            ScrollTrigger.refresh();
+        }, 300)
+    );
 }
 
 // Initialize on DOM ready
